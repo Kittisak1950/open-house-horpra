@@ -4,253 +4,777 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>รายการแข่งขันวิชาการ | OPENHOUSE HORPRA</title>
+<title>รายการแข่งขัน | OpenHouse Horpra</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#f6faf1;--white:#fff;--green:#dcefc9;--green-d:#2f6b3a;
-  --yellow:#ffe27a;--orange:#ff9a3d;--orange-s:#fff0dc;
-  --ink:#23301f;--muted:#667260;--line:#e0ead4;
-  --shadow:0 16px 38px rgba(47,107,58,.09);
+    --bg:#f7f8f2;
+    --white:#ffffff;
+    --green:#e4f0d8;
+    --green-d:#245c42;
+    --yellow:#f7d96b;
+    --yellow-s:#fff8dc;
+    --orange:#f39a55;
+    --orange-s:#fff0e2;
+    --orange-d:#a95c26;
+    --ink:#1d3029;
+    --muted:#65756d;
+    --line:#e1e9df;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Kanit',Tahoma,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
 
-.navbar{width:min(1200px,calc(100% - 48px));min-height:82px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}
-.logo-box{width:48px;height:48px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--green-d);font-size:21px;font-weight:800;flex-shrink:0}
-.brand strong{display:block;font-size:15px;letter-spacing:1px}
-.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--green-d)}
-.nav-links{display:flex;align-items:center;gap:28px;color:var(--muted);font-size:14px}
-.nav-links a:hover,.nav-links a.active{color:var(--green-d)}
-.nav-links a.active{font-weight:700}
-.back-link{border:1px solid var(--line);padding:9px 16px;border-radius:99px;background:#fff;font-size:13px;font-weight:600}
+*{margin:0;padding:0;box-sizing:border-box}
 
-.hero{width:min(1200px,calc(100% - 48px));margin:38px auto 28px;padding:clamp(28px,5vw,58px);border-radius:30px;background:linear-gradient(120deg,#e6f3d8 0%,#fff7d8 60%,#ffedda 100%);position:relative;overflow:hidden}
-.hero:after{content:"✦";position:absolute;right:7%;top:4%;font-size:clamp(90px,15vw,180px);color:rgba(255,154,61,.18);transform:rotate(12deg)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green-d);font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:12px}
-.eyebrow:before{content:"";width:28px;height:3px;border-radius:5px;background:var(--orange)}
-h1{font-size:clamp(30px,5vw,52px);line-height:1.2;margin-bottom:12px;max-width:760px}
-.hero p{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:700px;line-height:1.8}
-.hero-tag{display:inline-block;margin-top:22px;background:#fff;border:1px solid rgba(47,107,58,.12);padding:8px 15px;border-radius:99px;color:var(--green-d);font-size:12px;font-weight:600}
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:100px;
+}
 
-.content{width:min(1200px,calc(100% - 48px));margin:0 auto 76px}
-.section-head{text-align:center;margin:48px 0 26px}
-.section-head .mini{font-size:11px;letter-spacing:2px;color:var(--green-d);font-weight:700}
-.section-head h2{font-size:clamp(24px,3.5vw,34px);margin:4px 0}
-.section-head p{font-size:14px;color:var(--muted)}
+body{
+    background:
+      radial-gradient(ellipse at 85% 8%,rgba(220,238,205,.52),transparent 27%),
+      radial-gradient(ellipse at 8% 36%,rgba(255,239,202,.34),transparent 25%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Kanit',Tahoma,sans-serif;
+    overflow-x:hidden;
+}
 
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:16px 16px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(47,107,58,.13)}
+a{text-decoration:none;color:inherit}
 
-/* รูปภาพด้านบนแต่ละบล็อก */
-.card-image{width:100%;height:190px;overflow:hidden;border-radius:16px;margin-bottom:20px;background:#edf4e6}
-.card-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s}
-.card:hover .card-image img{transform:scale(1.04)}
+/* ================= NAVBAR เหมือนหน้าหลัก ================= */
 
-.category{font-size:11px;color:#e58b32;font-weight:700;letter-spacing:1px;margin-bottom:6px}
-.card h3{font-size:21px;line-height:1.35;margin-bottom:10px}
-.desc{font-size:14px;color:var(--muted);line-height:1.8;min-height:76px}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px}
-.pill{font-size:11px;color:var(--green-d);background:#f1f8e9;border-radius:99px;padding:6px 10px;font-weight:600}
+.navbar{
+    position:sticky;
+    top:12px;
+    z-index:150;
+    width:min(1240px,calc(100% - 48px));
+    height:76px;
+    margin:12px auto 0;
+    padding:0 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:1px solid rgba(225,233,223,.9);
+    border-radius:22px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:0 12px 36px rgba(35,64,46,.07);
+}
 
-.card-actions{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.detail-hint{font-size:11px;color:#82907a}
-.rule-btn{display:inline-block;border:0;background:var(--orange);color:#342516;border-radius:99px;padding:9px 15px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s;text-align:center}
-.rule-btn:hover{background:#ffb15f;transform:translateY(-1px)}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    color:var(--ink);
+    text-decoration:none;
+}
 
-.note{margin-top:26px;padding:16px 18px;border:1px dashed #c7dcb5;border-radius:16px;color:var(--muted);font-size:12px;line-height:1.8;background:rgba(255,255,255,.55)}
-footer{text-align:center;padding:24px;color:#7b8875;font-size:12px;border-top:1px solid var(--line)}
+.logo-box{
+    width:46px;
+    height:46px;
+    padding:3px;
+    border-radius:13px;
+    background:#f1f6eb;
+    flex-shrink:0;
+    overflow:hidden;
+}
+
+.logo-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.logo-text strong{
+    display:block;
+    font-size:15px;
+    letter-spacing:1.4px;
+    color:var(--ink);
+    white-space:nowrap;
+}
+
+.logo-text span{
+    display:block;
+    color:var(--green-d);
+    font-size:9px;
+    letter-spacing:2.2px;
+    margin-top:3px;
+}
+
+.desktop-menu{
+    display:flex;
+    align-items:center;
+    gap:clamp(16px,2.4vw,32px);
+}
+
+.desktop-menu a{
+    font-size:13px;
+    font-weight:500;
+    color:#586a60;
+    text-decoration:none;
+    padding:6px 0;
+    border-bottom:2px solid transparent;
+    transition:.2s;
+}
+
+.desktop-menu a:hover,
+.desktop-menu a.active{
+    color:var(--green-d);
+    border-color:var(--orange);
+}
+
+.menu-button{
+    display:none;
+    width:46px;
+    height:46px;
+    border:1px solid #dce8d8;
+    border-radius:12px;
+    background:#f7faf4;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.menu-button span{
+    width:24px;
+    height:3px;
+    background:var(--green-d);
+    border-radius:5px;
+    transition:.3s;
+}
+
+.menu-button.active span:nth-child(1){
+    transform:translateY(9px) rotate(45deg);
+}
+.menu-button.active span:nth-child(2){opacity:0}
+.menu-button.active span:nth-child(3){
+    transform:translateY(-9px) rotate(-45deg);
+}
+
+.mobile-menu{
+    display:none;
+    position:fixed;
+    z-index:200;
+    top:98px;
+    right:24px;
+    width:260px;
+    max-width:calc(100vw - 48px);
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 20px 50px rgba(29,48,41,.16);
+}
+
+.mobile-menu.open{display:block}
+
+.mobile-menu a{
+    display:block;
+    padding:14px;
+    border-radius:10px;
+    color:var(--ink);
+    text-decoration:none;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active{
+    background:var(--green);
+    color:var(--green-d);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+    width:min(1240px,calc(100% - 48px));
+    margin:24px auto 54px;
+    padding:65px clamp(28px,5vw,76px);
+    overflow:hidden;
+    border:1px solid rgba(225,233,223,.85);
+    border-radius:34px;
+    background:linear-gradient(115deg,#fff 0%,#fff 48%,#f0f6e9 100%);
+    box-shadow:0 24px 70px rgba(40,70,48,.07);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:470px;
+    height:470px;
+    right:-95px;
+    top:-175px;
+    border:1px solid rgba(72,126,82,.12);
+    border-radius:50%;
+    box-shadow:0 0 0 28px rgba(72,126,82,.035),
+               0 0 0 58px rgba(72,126,82,.025);
+    pointer-events:none;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-kicker{
+    color:var(--green-d);
+    font-size:clamp(15px,2vw,22px);
+    font-weight:600;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.hero h1{
+    font-size:clamp(34px,5.5vw,66px);
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-.5px;
+    color:#203b2e;
+}
+
+.hero-accent{
+    width:86px;
+    height:6px;
+    margin:20px 0 14px;
+    border-radius:99px;
+    background:linear-gradient(90deg,var(--orange),var(--yellow));
+}
+
+.hero p{
+    max-width:720px;
+    color:#62776a;
+    font-size:clamp(14px,1.5vw,17px);
+    line-height:1.9;
+}
+
+.hero-tag{
+    display:inline-block;
+    margin-top:22px;
+    padding:9px 17px;
+    border:1px solid #e5eadf;
+    border-radius:999px;
+    background:#fff;
+    color:var(--green-d);
+    font-size:12px;
+    font-weight:600;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    width:min(1160px,calc(100% - 48px));
+    margin:0 auto 85px;
+}
+
+.section-head{
+    text-align:center;
+    margin-bottom:32px;
+}
+
+.section-head .mini{
+    color:var(--green-d);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2.5px;
+}
+
+.section-head h2{
+    margin-top:7px;
+    font-size:clamp(27px,3.5vw,36px);
+    color:var(--ink);
+}
+
+.section-head p{
+    margin-top:5px;
+    font-size:14px;
+    color:var(--muted);
+}
+
+/* ================= COMPETITION CARDS ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+}
+
+.card{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    padding:16px 16px 23px;
+    border:1px solid #e3eade;
+    border-radius:24px;
+    background:linear-gradient(145deg,#fff,#fbfcf8);
+    box-shadow:0 10px 28px rgba(35,64,46,.035);
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#cbdcbe;
+    box-shadow:0 20px 38px rgba(35,64,46,.09);
+}
+
+/* ช่องภาพด้านบน */
+.card-image{
+    width:100%;
+    height:195px;
+    margin-bottom:20px;
+    overflow:hidden;
+    border-radius:17px;
+    background:linear-gradient(145deg,#e8f2dc,#f8f5df);
+}
+
+.card-image img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .35s;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.045);
+}
+
+.category{
+    color:var(--orange-d);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.7px;
+    margin-bottom:7px;
+}
+
+.card h3{
+    font-size:20px;
+    line-height:1.4;
+    margin-bottom:10px;
+    color:var(--ink);
+}
+
+.desc{
+    min-height:78px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.85;
+}
+
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:18px 0 20px;
+}
+
+.pill{
+    padding:6px 11px;
+    border:1px solid #e0ebd9;
+    border-radius:999px;
+    background:#eff5e9;
+    color:var(--green-d);
+    font-size:10px;
+    font-weight:600;
+}
+
+.card-actions{
+    margin-top:auto;
+    padding-top:15px;
+    border-top:1px solid #edf0e9;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.detail-hint{
+    color:#829084;
+    font-size:11px;
+}
+
+.rule-btn{
+    display:inline-block;
+    padding:9px 16px;
+    border:0;
+    border-radius:999px;
+    background:var(--orange);
+    color:#342516;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.rule-btn:hover{
+    background:#ffb16f;
+    transform:translateY(-2px);
+}
+
+/* ================= NOTE & FOOTER ================= */
+
+.note{
+    margin-top:28px;
+    padding:18px 20px;
+    border:1px dashed #c7dcb5;
+    border-radius:17px;
+    background:rgba(255,255,255,.65);
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.9;
+}
+
+footer{
+    padding:27px 20px;
+    border-top:1px solid var(--line);
+    color:#7b8875;
+    font-size:11px;
+    letter-spacing:1px;
+    text-align:center;
+}
+
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
- .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .nav-links{gap:16px}
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+@media(max-width:760px){
+    .navbar{
+        width:calc(100% - 30px);
+        height:68px;
+        padding:0 14px;
+        margin-top:10px;
+    }
+
+    .desktop-menu{display:none}
+    .menu-button{display:flex}
+
+    .logo-box{
+        width:42px;
+        height:42px;
+    }
+
+    .logo-text strong{font-size:12px}
+    .logo-text span{font-size:8px}
+}
+
 @media(max-width:600px){
- .navbar{width:calc(100% - 30px);min-height:68px}
- .logo-box{width:40px;height:40px}
- .brand strong{font-size:13px}
- .brand small{font-size:8px}
- .nav-links{gap:10px;font-size:12px}
- .nav-links a:not(.active){display:none}
- .back-link{padding:8px 11px;font-size:11px}
- .hero,.content{width:calc(100% - 30px)}
- .hero{margin-top:20px;border-radius:22px;padding:27px 22px}
- .hero:after{right:-12px;top:0}
- .section-head{margin:38px 0 20px}
- .grid{grid-template-columns:1fr;gap:14px}
- .card{padding:14px 14px 20px;border-radius:18px}
- .desc{min-height:0}
- .card-image{height:200px;margin-bottom:16px}
- .card h3{font-size:19px}
+    .hero,.content{
+        width:calc(100% - 30px);
+    }
+
+    .hero{
+        margin-top:20px;
+        margin-bottom:38px;
+        padding:35px 23px;
+        border-radius:25px;
+    }
+
+    .hero h1{font-size:35px}
+    .hero::before{
+        width:300px;
+        height:300px;
+        right:-150px;
+    }
+
+    .section-head{margin-bottom:22px}
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .card{
+        padding:14px 14px 20px;
+        border-radius:20px;
+    }
+
+    .card-image{height:205px}
+    .card h3{font-size:19px}
+    .desc{min-height:0}
+    .content{margin-bottom:55px}
 }
+
 @media(prefers-reduced-motion:reduce){
- *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    *{
+        scroll-behavior:auto!important;
+        animation:none!important;
+        transition:none!important;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER เหมือนหน้าหลัก -->
 <header class="navbar">
-  <a class="brand" href="index.html" aria-label="กลับหน้าหลัก">
-    <div class="logo-box">H</div>
-    <div>
-      <strong>OPENHOUSE HORPRA</strong>
-      <small>IGNITE THE FUTURE</small>
-    </div>
-  </a>
 
-  <nav class="nav-links" aria-label="เมนูหลัก">
-    <a href="index.html">หน้าแรก</a>
-    <a class="active" href="competition.html">รายการแข่งขัน</a>
-    <a href="participants.html">ผู้เข้าแข่งขัน</a>
-  </nav>
+    <a class="logo" href="index.html" aria-label="กลับหน้าหลัก">
+        <div class="logo-box">
+            <img src="logo.png" alt="HORPRA Logo">
+        </div>
 
-  <a class="back-link" href="index.html">← กลับหน้าหลัก</a>
+        <div class="logo-text">
+            <strong>OPENHOUSE HORPRA</strong>
+            <span>IGNITE THE FUTURE</span>
+        </div>
+    </a>
+
+    <nav class="desktop-menu" aria-label="เมนูหลัก">
+        <a href="index.html">หน้าแรก</a>
+        <a href="competition.html" class="active">รายการแข่งขัน</a>
+        <a href="participants.html">ผู้เข้าแข่งขัน</a>
+    </nav>
+
+    <button class="menu-button" id="menuButton"
+            aria-label="เปิดเมนู" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
 </header>
 
+<nav class="mobile-menu" id="mobileMenu" aria-label="เมนูมือถือ">
+    <a href="index.html">หน้าแรก</a>
+    <a href="competition.html" class="active">รายการแข่งขัน</a>
+    <a href="participants.html">ผู้เข้าแข่งขัน</a>
+</nav>
+
+<!-- HERO -->
 <section class="hero">
-  <div class="eyebrow">HORPRA OPEN HOUSE · ACADEMIC CHALLENGE</div>
-  <h1>เวทีประลองความรู้<br>สู่การเรียนรู้แห่งอนาคต</h1>
-  <p>พบกับ 6 รายการแข่งขันวิชาการ ที่เปิดโอกาสให้นักเรียนได้แสดงความรู้ ความคิดสร้างสรรค์ และทักษะการแก้ปัญหา พร้อมศึกษารายละเอียดและกติกาของแต่ละรายการ</p>
-  <span class="hero-tag">6 รายการแข่งขัน · ACADEMIC COMPETITIONS</span>
+    <div class="hero-content">
+        <div class="hero-kicker">
+            HORPRA OPEN HOUSE · ACADEMIC CHALLENGE
+        </div>
+
+        <h1>
+            เวทีประลองความรู้<br>
+            สู่การเรียนรู้แห่งอนาคต
+        </h1>
+
+        <div class="hero-accent"></div>
+
+        <p>
+            พบกับ 6 รายการแข่งขันวิชาการ ที่เปิดโอกาสให้นักเรียนได้แสดงความรู้
+            ความคิดสร้างสรรค์ และทักษะการแก้ปัญหา
+            พร้อมศึกษารายละเอียดของแต่ละรายการ
+        </p>
+
+        <span class="hero-tag">
+            6 รายการแข่งขัน · ACADEMIC COMPETITIONS
+        </span>
+    </div>
 </section>
 
+<!-- รายการแข่งขัน -->
 <main class="content">
 
-  <div class="section-head">
-    <div class="mini">CHOOSE YOUR CHALLENGE</div>
-    <h2>รายการแข่งขันวิชาการ</h2>
-    <p>เลือกดูรายละเอียดและกติกาของรายการที่สนใจ</p>
-  </div>
+    <div class="section-head">
+        <div class="mini">CHOOSE YOUR CHALLENGE</div>
+        <h2>รายการแข่งขันวิชาการ</h2>
+        <p>เลือกดูรายละเอียดและกติกาของรายการที่สนใจ</p>
+    </div>
 
-  <section class="grid" aria-label="รายการแข่งขันวิชาการ 6 รายการ">
+    <section class="grid" aria-label="รายการแข่งขันวิชาการ">
 
-    <!-- รายการที่ 1 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/science.jpg" alt="การแข่งขันตอบปัญหาวิทยาศาสตร์">
-      </div>
-      <div class="category">SCIENCE QUIZ</div>
-      <h3>การแข่งขันตอบปัญหาวิทยาศาสตร์</h3>
-      <p class="desc">ท้าทายความรู้ทางวิทยาศาสตร์ผ่านโจทย์ที่ครอบคลุมชีววิทยา เคมี ฟิสิกส์ โลกและอวกาศ พร้อมฝึกการคิดวิเคราะห์อย่างเป็นระบบ</p>
-      <div class="meta">
-        <span class="pill">ความรู้วิทยาศาสตร์</span>
-        <span class="pill">ตอบคำถาม</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 1" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+        <!-- รายการ 1 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/science.jpg" alt="การแข่งขันตอบปัญหาวิทยาศาสตร์">
+            </div>
 
-    <!-- รายการที่ 2 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/math.jpg" alt="การแข่งขันคณิตคิดเร็ว">
-      </div>
-      <div class="category">MATHEMATICS CHALLENGE</div>
-      <h3>การแข่งขันคณิตคิดเร็ว</h3>
-      <p class="desc">ประลองทักษะการคำนวณ การใช้เหตุผล และการแก้โจทย์คณิตศาสตร์ภายใต้เวลาที่กำหนด เน้นความถูกต้องและกระบวนการคิด</p>
-      <div class="meta">
-        <span class="pill">คณิตศาสตร์</span>
-        <span class="pill">คิดวิเคราะห์</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 2" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+            <div class="category">SCIENCE QUIZ</div>
+            <h3>การแข่งขันตอบปัญหาวิทยาศาสตร์</h3>
 
-    <!-- รายการที่ 3 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/english.jpg" alt="การแข่งขันทักษะภาษาอังกฤษ">
-      </div>
-      <div class="category">ENGLISH SKILLS</div>
-      <h3>การแข่งขันทักษะภาษาอังกฤษ</h3>
-      <p class="desc">แสดงความสามารถด้านภาษาอังกฤษ ทั้งคำศัพท์ ไวยากรณ์ การอ่านจับใจความ และการสื่อสารอย่างมั่นใจ</p>
-      <div class="meta">
-        <span class="pill">ภาษาอังกฤษ</span>
-        <span class="pill">ทักษะภาษา</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 3" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+            <p class="desc">
+                ท้าทายความรู้ทางวิทยาศาสตร์ผ่านโจทย์ที่ครอบคลุมชีววิทยา
+                เคมี ฟิสิกส์ โลกและอวกาศ พร้อมฝึกการคิดวิเคราะห์อย่างเป็นระบบ
+            </p>
 
-    <!-- รายการที่ 4 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/thai.jpg" alt="การแข่งขันทักษะภาษาไทย">
-      </div>
-      <div class="category">THAI LANGUAGE</div>
-      <h3>การแข่งขันทักษะภาษาไทย</h3>
-      <p class="desc">ส่งเสริมการใช้ภาษาไทยอย่างถูกต้อง ผ่านความรู้ด้านหลักภาษา การอ่าน การเขียน และการตีความข้อความ</p>
-      <div class="meta">
-        <span class="pill">ภาษาไทย</span>
-        <span class="pill">อ่านและเขียน</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 4" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+            <div class="meta">
+                <span class="pill">ความรู้วิทยาศาสตร์</span>
+                <span class="pill">ตอบคำถาม</span>
+            </div>
 
-    <!-- รายการที่ 5 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/coding.jpg" alt="การแข่งขันคอมพิวเตอร์และการเขียนโปรแกรม">
-      </div>
-      <div class="category">COMPUTER & CODING</div>
-      <h3>การแข่งขันทักษะคอมพิวเตอร์และการเขียนโปรแกรม</h3>
-      <p class="desc">ใช้แนวคิดเชิงคำนวณออกแบบวิธีแก้ปัญหา สร้างผลงานดิจิทัล และแสดงทักษะการเขียนโปรแกรมอย่างสร้างสรรค์</p>
-      <div class="meta">
-        <span class="pill">เทคโนโลยี</span>
-        <span class="pill">Coding</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 5" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 1"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
 
-    <!-- รายการที่ 6 -->
-    <article class="card">
-      <div class="card-image">
-        <img src="images/social.jpg" alt="การแข่งขันตอบปัญหาสังคมศึกษา">
-      </div>
-      <div class="category">SOCIAL STUDIES</div>
-      <h3>การแข่งขันตอบปัญหาสังคมศึกษา</h3>
-      <p class="desc">ทดสอบความรู้ด้านประวัติศาสตร์ ภูมิศาสตร์ หน้าที่พลเมือง เศรษฐศาสตร์ และการเชื่อมโยงความรู้กับสถานการณ์รอบตัว</p>
-      <div class="meta">
-        <span class="pill">สังคมศึกษา</span>
-        <span class="pill">ความรู้รอบตัว</span>
-      </div>
-      <div class="card-actions">
-        <span class="detail-hint">ดูรายละเอียดรายการ</span>
-        <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 6" target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
-      </div>
-    </article>
+        <!-- รายการ 2 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/math.jpg" alt="การแข่งขันคณิตคิดเร็ว">
+            </div>
 
-  </section>
+            <div class="category">MATHEMATICS CHALLENGE</div>
+            <h3>การแข่งขันคณิตคิดเร็ว</h3>
 
-  <div class="note">
-    หมายเหตุ: รายละเอียดและกติกาที่แสดงเป็นตัวอย่างสำหรับจัดหน้าเว็บไซต์ สามารถปรับแก้จำนวนผู้เข้าแข่งขัน เวลา รูปแบบข้อสอบ และเกณฑ์การตัดสินให้ตรงกับประกาศอย่างเป็นทางการของผู้จัดการแข่งขันได้
-  </div>
+            <p class="desc">
+                ประลองทักษะการคำนวณ การใช้เหตุผล และการแก้โจทย์คณิตศาสตร์
+                ภายใต้เวลาที่กำหนด เน้นความถูกต้องและกระบวนการคิด
+            </p>
+
+            <div class="meta">
+                <span class="pill">คณิตศาสตร์</span>
+                <span class="pill">คิดวิเคราะห์</span>
+            </div>
+
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 2"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
+
+        <!-- รายการ 3 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/english.jpg" alt="การแข่งขันทักษะภาษาอังกฤษ">
+            </div>
+
+            <div class="category">ENGLISH SKILLS</div>
+            <h3>การแข่งขันทักษะภาษาอังกฤษ</h3>
+
+            <p class="desc">
+                แสดงความสามารถด้านภาษาอังกฤษ ทั้งคำศัพท์ ไวยากรณ์
+                การอ่านจับใจความ และการสื่อสารอย่างมั่นใจ
+            </p>
+
+            <div class="meta">
+                <span class="pill">ภาษาอังกฤษ</span>
+                <span class="pill">ทักษะภาษา</span>
+            </div>
+
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 3"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
+
+        <!-- รายการ 4 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/thai.jpg" alt="การแข่งขันทักษะภาษาไทย">
+            </div>
+
+            <div class="category">THAI LANGUAGE</div>
+            <h3>การแข่งขันทักษะภาษาไทย</h3>
+
+            <p class="desc">
+                ส่งเสริมการใช้ภาษาไทยอย่างถูกต้อง ผ่านความรู้ด้านหลักภาษา
+                การอ่าน การเขียน และการตีความข้อความ
+            </p>
+
+            <div class="meta">
+                <span class="pill">ภาษาไทย</span>
+                <span class="pill">อ่านและเขียน</span>
+            </div>
+
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 4"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
+
+        <!-- รายการ 5 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/coding.jpg" alt="การแข่งขันคอมพิวเตอร์และการเขียนโปรแกรม">
+            </div>
+
+            <div class="category">COMPUTER & CODING</div>
+            <h3>การแข่งขันทักษะคอมพิวเตอร์และการเขียนโปรแกรม</h3>
+
+            <p class="desc">
+                ใช้แนวคิดเชิงคำนวณออกแบบวิธีแก้ปัญหา สร้างผลงานดิจิทัล
+                และแสดงทักษะการเขียนโปรแกรมอย่างสร้างสรรค์
+            </p>
+
+            <div class="meta">
+                <span class="pill">เทคโนโลยี</span>
+                <span class="pill">Coding</span>
+            </div>
+
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 5"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
+
+        <!-- รายการ 6 -->
+        <article class="card">
+            <div class="card-image">
+                <img src="images/social.jpg" alt="การแข่งขันตอบปัญหาสังคมศึกษา">
+            </div>
+
+            <div class="category">SOCIAL STUDIES</div>
+            <h3>การแข่งขันตอบปัญหาสังคมศึกษา</h3>
+
+            <p class="desc">
+                ทดสอบความรู้ด้านประวัติศาสตร์ ภูมิศาสตร์ หน้าที่พลเมือง
+                เศรษฐศาสตร์ และการเชื่อมโยงความรู้กับสถานการณ์รอบตัว
+            </p>
+
+            <div class="meta">
+                <span class="pill">สังคมศึกษา</span>
+                <span class="pill">ความรู้รอบตัว</span>
+            </div>
+
+            <div class="card-actions">
+                <span class="detail-hint">ดูรายละเอียดรายการ</span>
+                <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 6"
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+            </div>
+        </article>
+
+    </section>
+
+    <div class="note">
+        หมายเหตุ: โปรดตรวจสอบรายละเอียดและกติกาการแข่งขันจากเอกสารประกาศของผู้จัดการแข่งขัน
+    </div>
 
 </main>
 
-<footer>OPENHOUSE HORPRA · ACADEMIC COMPETITIONS</footer>
+<footer>
+    OPENHOUSE HORPRA · ACADEMIC COMPETITIONS
+</footer>
+
+<script>
+/* เมนูมือถือ */
+const menuButton = document.getElementById('menuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+
+menuButton.addEventListener('click', function(){
+    const isOpen = mobileMenu.classList.toggle('open');
+
+    menuButton.classList.toggle('active', isOpen);
+    menuButton.setAttribute('aria-expanded', isOpen);
+});
+
+document.addEventListener('click', function(event){
+    if(!menuButton.contains(event.target) &&
+       !mobileMenu.contains(event.target)){
+        mobileMenu.classList.remove('open');
+        menuButton.classList.remove('active');
+        menuButton.setAttribute('aria-expanded', 'false');
+    }
+});
+</script>
 
 </body>
 </html>
