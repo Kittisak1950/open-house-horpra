@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>รายการแข่งขันวิชาการ | OPENHOUSE HORPRA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6faf1;--white:#fff;--green:#dcefc9;--green-d:#2f6b3a;
+  --yellow:#ffe27a;--orange:#ff9a3d;--orange-s:#fff0dc;
+  --ink:#23301f;--muted:#667260;--line:#e0ead4;
+  --shadow:0 16px 38px rgba(47,107,58,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Kanit',Tahoma,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.navbar{width:min(1200px,calc(100% - 48px));min-height:82px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-box{width:48px;height:48px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--green-d);font-size:21px;font-weight:800;flex-shrink:0}
+.brand strong{display:block;font-size:15px;letter-spacing:1px}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--green-d)}
+.nav-links{display:flex;align-items:center;gap:28px;color:var(--muted);font-size:14px}
+.nav-links a:hover,.nav-links a.active{color:var(--green-d)}
+.nav-links a.active{font-weight:700}
+.back-link{border:1px solid var(--line);padding:9px 16px;border-radius:99px;background:#fff;font-size:13px;font-weight:600}
+.hero{width:min(1200px,calc(100% - 48px));margin:38px auto 28px;padding:clamp(28px,5vw,58px);border-radius:30px;background:linear-gradient(120deg,#e6f3d8 0%,#fff7d8 60%,#ffedda 100%);position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;right:7%;top:4%;font-size:clamp(90px,15vw,180px);color:rgba(255,154,61,.18);transform:rotate(12deg)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green-d);font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:12px}
+.eyebrow:before{content:"";width:28px;height:3px;border-radius:5px;background:var(--orange)}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.2;margin-bottom:12px;max-width:760px}
+.hero p{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:700px;line-height:1.8}
+.hero-tag{display:inline-block;margin-top:22px;background:#fff;border:1px solid rgba(47,107,58,.12);padding:8px 15px;border-radius:99px;color:var(--green-d);font-size:12px;font-weight:600}
+.content{width:min(1200px,calc(100% - 48px));margin:0 auto 76px}
+.section-head{text-align:center;margin:48px 0 26px}
+.section-head .mini{font-size:11px;letter-spacing:2px;color:var(--green-d);font-weight:700}
+.section-head h2{font-size:clamp(24px,3.5vw,34px);margin:4px 0}
+.section-head p{font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(47,107,58,.13)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.number{width:48px;height:48px;border-radius:15px;background:var(--green);color:var(--green-d);display:grid;place-items:center;font-size:19px;font-weight:800;flex-shrink:0}
+.icon{width:46px;height:46px;border-radius:15px;background:var(--orange-s);display:grid;place-items:center;font-size:23px}
+.category{font-size:11px;color:var(--orange-d);font-weight:700;letter-spacing:1px;margin-bottom:6px}
+.card h3{font-size:21px;line-height:1.35;margin-bottom:10px}
+.desc{font-size:14px;color:var(--muted);line-height:1.8;min-height:76px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px}
+.pill{font-size:11px;color:var(--green-d);background:#f1f8e9;border-radius:99px;padding:6px 10px;font-weight:600}
+.card-actions{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.detail-hint{font-size:11px;color:#82907a}
+.rule-btn{border:0;background:var(--orange);color:#342516;border-radius:99px;padding:9px 15px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s}
+.rule-btn:hover{background:#ffb15f;transform:translateY(-1px)}
+.note{margin-top:26px;padding:16px 18px;border:1px dashed #c7dcb5;border-radius:16px;color:var(--muted);font-size:12px;line-height:1.8;background:rgba(255,255,255,.55)}
+footer{text-align:center;padding:24px;color:#7b8875;font-size:12px;border-top:1px solid var(--line)}
+/* modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(22,34,20,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
+.modal-backdrop.show{display:flex}
+.modal{width:min(560px,100%);max-height:min(82vh,760px);overflow:auto;background:#fff;border-radius:24px;padding:clamp(20px,4vw,30px);box-shadow:0 25px 80px rgba(0,0,0,.25);animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.modal-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:16px}
+.modal-kicker{font-size:10px;letter-spacing:1.5px;color:var(--green-d);font-weight:700}
+.modal h2{font-size:24px;line-height:1.35;margin-top:4px}
+.close{border:0;width:36px;height:36px;border-radius:50%;background:#f1f6eb;font-size:22px;cursor:pointer;flex-shrink:0}
+.rule-list{padding-left:21px;color:#52604d;font-size:14px;line-height:1.9}
+.rule-list li{padding-left:4px;margin:5px 0}
+.modal-foot{margin-top:18px;padding:12px 14px;background:#fff7e7;border-radius:12px;color:#77542e;font-size:12px;line-height:1.7}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nav-links{gap:16px}}
+@media(max-width:600px){
+ .navbar{width:calc(100% - 30px);min-height:68px}.logo-box{width:40px;height:40px}.brand strong{font-size:13px}.brand small{font-size:8px}
+ .nav-links{gap:10px;font-size:12px}.nav-links a:not(.active){display:none}.back-link{padding:8px 11px;font-size:11px}
+ .hero,.content{width:calc(100% - 30px)}.hero{margin-top:20px;border-radius:22px;padding:27px 22px}
+ .hero:after{right:-12px;top:0}.section-head{margin:38px 0 20px}
+ .grid{grid-template-columns:1fr;gap:14px}.card{padding:20px;border-radius:18px}.desc{min-height:0}
+ .card-top{margin-bottom:13px}.card h3{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <a class="brand" href="index.html" aria-label="กลับหน้าหลัก">
+    <div class="logo-box">H</div>
+    <div><strong>OPENHOUSE HORPRA</strong><small>IGNITE THE FUTURE</small></div>
+  </a>
+  <nav class="nav-links" aria-label="เมนูหลัก">
+    <a href="index.html">หน้าแรก</a>
+    <a class="active" href="competition.html">รายการแข่งขัน</a>
+    <a href="participants.html">ผู้เข้าแข่งขัน</a>
+  </nav>
+  <a class="back-link" href="index.html">← กลับหน้าหลัก</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">HORPRA OPEN HOUSE · ACADEMIC CHALLENGE</div>
+  <h1>เวทีประลองความรู้<br>สู่การเรียนรู้แห่งอนาคต</h1>
+  <p>พบกับ 6 รายการแข่งขันวิชาการ ที่เปิดโอกาสให้นักเรียนได้แสดงความรู้ ความคิดสร้างสรรค์ และทักษะการแก้ปัญหา พร้อมศึกษารายละเอียดและกติกาของแต่ละรายการ</p>
+  <span class="hero-tag">6 รายการแข่งขัน · ACADEMIC COMPETITIONS</span>
+</section>
+
+<main class="content">
+  <div class="section-head">
+    <div class="mini">CHOOSE YOUR CHALLENGE</div>
+    <h2>รายการแข่งขันวิชาการ</h2>
+    <p>เลือกดูรายละเอียดและกติกาของรายการที่สนใจ</p>
+  </div>
+
+  <section class="grid" aria-label="รายการแข่งขันวิชาการ 6 รายการ">
+    <article class="card">
+      <div class="card-top"><div class="number">01</div><div class="icon">🔬</div></div>
+      <div class="category">SCIENCE QUIZ</div>
+      <h3>การแข่งขันตอบปัญหาวิทยาศาสตร์</h3>
+      <p class="desc">ท้าทายความรู้ทางวิทยาศาสตร์ผ่านโจทย์ที่ครอบคลุมชีววิทยา เคมี ฟิสิกส์ โลกและอวกาศ พร้อมฝึกการคิดวิเคราะห์อย่างเป็นระบบ</p>
+      <div class="meta"><span class="pill">ความรู้วิทยาศาสตร์</span><span class="pill">ตอบคำถาม</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="science">กติกาการแข่งขัน ↗</button></div>
+    </article>
+
+    <article class="card">
+      <div class="card-top"><div class="number">02</div><div class="icon">➗</div></div>
+      <div class="category">MATHEMATICS CHALLENGE</div>
+      <h3>การแข่งขันคณิตคิดเร็ว</h3>
+      <p class="desc">ประลองทักษะการคำนวณ การใช้เหตุผล และการแก้โจทย์คณิตศาสตร์ภายใต้เวลาที่กำหนด เน้นความถูกต้องและกระบวนการคิด</p>
+      <div class="meta"><span class="pill">คณิตศาสตร์</span><span class="pill">คิดวิเคราะห์</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="math">กติกาการแข่งขัน ↗</button></div>
+    </article>
+
+    <article class="card">
+      <div class="card-top"><div class="number">03</div><div class="icon">🌐</div></div>
+      <div class="category">ENGLISH SKILLS</div>
+      <h3>การแข่งขันทักษะภาษาอังกฤษ</h3>
+      <p class="desc">แสดงความสามารถด้านภาษาอังกฤษ ทั้งคำศัพท์ ไวยากรณ์ การอ่านจับใจความ และการสื่อสารอย่างมั่นใจ</p>
+      <div class="meta"><span class="pill">ภาษาอังกฤษ</span><span class="pill">ทักษะภาษา</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="english">กติกาการแข่งขัน ↗</button></div>
+    </article>
+
+    <article class="card">
+      <div class="card-top"><div class="number">04</div><div class="icon">📚</div></div>
+      <div class="category">THAI LANGUAGE</div>
+      <h3>การแข่งขันทักษะภาษาไทย</h3>
+      <p class="desc">ส่งเสริมการใช้ภาษาไทยอย่างถูกต้อง ผ่านความรู้ด้านหลักภาษา การอ่าน การเขียน และการตีความข้อความ</p>
+      <div class="meta"><span class="pill">ภาษาไทย</span><span class="pill">อ่านและเขียน</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="thai">กติกาการแข่งขัน ↗</button></div>
+    </article>
+
+    <article class="card">
+      <div class="card-top"><div class="number">05</div><div class="icon">💻</div></div>
+      <div class="category">COMPUTER & CODING</div>
+      <h3>การแข่งขันทักษะคอมพิวเตอร์และการเขียนโปรแกรม</h3>
+      <p class="desc">ใช้แนวคิดเชิงคำนวณออกแบบวิธีแก้ปัญหา สร้างผลงานดิจิทัล และแสดงทักษะการเขียนโปรแกรมอย่างสร้างสรรค์</p>
+      <div class="meta"><span class="pill">เทคโนโลยี</span><span class="pill">Coding</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="coding">กติกาการแข่งขัน ↗</button></div>
+    </article>
+
+    <article class="card">
+      <div class="card-top"><div class="number">06</div><div class="icon">🧭</div></div>
+      <div class="category">SOCIAL STUDIES</div>
+      <h3>การแข่งขันตอบปัญหาสังคมศึกษา</h3>
+      <p class="desc">ทดสอบความรู้ด้านประวัติศาสตร์ ภูมิศาสตร์ หน้าที่พลเมือง เศรษฐศาสตร์ และการเชื่อมโยงความรู้กับสถานการณ์รอบตัว</p>
+      <div class="meta"><span class="pill">สังคมศึกษา</span><span class="pill">ความรู้รอบตัว</span></div>
+      <div class="card-actions"><span class="detail-hint">ดูรายละเอียดรายการ</span><button class="rule-btn" data-rule="social">กติกาการแข่งขัน ↗</button></div>
+    </article>
+  </section>
+
+  <div class="note">หมายเหตุ: รายละเอียดและกติกาที่แสดงเป็นตัวอย่างสำหรับจัดหน้าเว็บไซต์ สามารถปรับแก้จำนวนผู้เข้าแข่งขัน เวลา รูปแบบข้อสอบ และเกณฑ์การตัดสินให้ตรงกับประกาศอย่างเป็นทางการของผู้จัดการแข่งขันได้</div>
+</main>
+
+<footer>OPENHOUSE HORPRA · ACADEMIC COMPETITIONS</footer>
+
+<div class="modal-backdrop" id="ruleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <div><div class="modal-kicker">COMPETITION GUIDELINES</div><h2 id="modalTitle">กติกาการแข่งขัน</h2></div>
+      <button class="close" id="closeModal" aria-label="ปิดหน้าต่าง">×</button>
+    </div>
+    <ol class="rule-list" id="ruleList"></ol>
+    <div class="modal-foot">โปรดตรวจสอบประกาศจากคณะกรรมการจัดการแข่งขันอีกครั้งก่อนวันแข่งขัน เพื่อยืนยันเวลา อุปกรณ์ และเงื่อนไขเฉพาะของรายการ</div>
+  </div>
+</div>
+
+<script>
+const rules = {
+ science:{title:"การแข่งขันตอบปัญหาวิทยาศาสตร์",items:[
+ "ผู้เข้าแข่งขันต้องรายงานตัวต่อคณะกรรมการก่อนเริ่มการแข่งขันตามเวลาที่กำหนด",
+ "การแข่งขันเป็นการตอบคำถามตามขอบเขตเนื้อหาวิทยาศาสตร์ที่ผู้จัดประกาศ",
+ "ผู้เข้าแข่งขันต้องตอบด้วยตนเอง ห้ามปรึกษาหรือส่งสัญญาณกับผู้อื่นระหว่างการแข่งขัน",
+ "ให้คะแนนตามคำตอบที่ถูกต้องและเกณฑ์ที่คณะกรรมการกำหนด",
+ "กรณีคะแนนเท่ากัน ให้ใช้คำถามเพิ่มเติมหรือวิธีตัดสินตามประกาศของคณะกรรมการ"
+ ]},
+ math:{title:"การแข่งขันคณิตคิดเร็ว",items:[
+ "ผู้เข้าแข่งขันต้องใช้อุปกรณ์ตามที่คณะกรรมการอนุญาตเท่านั้น",
+ "ทำโจทย์ภายในเวลาที่กำหนด และส่งคำตอบตามรูปแบบที่แจ้งก่อนเริ่มการแข่งขัน",
+ "ห้ามใช้เครื่องคิดเลข โทรศัพท์ หรืออุปกรณ์ช่วยคำนวณ เว้นแต่ผู้จัดอนุญาต",
+ "ให้คะแนนจากความถูกต้อง และอาจพิจารณาเวลาที่ใช้ในกรณีคะแนนเท่ากัน",
+ "การตัดสินของคณะกรรมการถือเป็นที่สิ้นสุด"
+ ]},
+ english:{title:"การแข่งขันทักษะภาษาอังกฤษ",items:[
+ "ผู้เข้าแข่งขันต้องเข้าร่วมตามรูปแบบและเวลาที่กำหนดในประกาศ",
+ "ใช้ภาษาอังกฤษในการตอบหรือทำกิจกรรมตามโจทย์ของรายการ",
+ "ห้ามใช้อุปกรณ์แปลภาษา อินเทอร์เน็ต หรือเอกสารช่วยเหลือ เว้นแต่ได้รับอนุญาต",
+ "พิจารณาคะแนนจากความถูกต้อง ความเข้าใจ การใช้ภาษา และเกณฑ์เฉพาะของกิจกรรม",
+ "การตัดสินของคณะกรรมการถือเป็นที่สิ้นสุด"
+ ]},
+ thai:{title:"การแข่งขันทักษะภาษาไทย",items:[
+ "ผู้เข้าแข่งขันต้องทำกิจกรรมตามโจทย์และเวลาที่คณะกรรมการกำหนด",
+ "ใช้ภาษาไทยให้ถูกต้องตามหลักภาษาและปฏิบัติตามรูปแบบการส่งงาน",
+ "ห้ามคัดลอกผลงานของผู้อื่นหรือใช้อุปกรณ์ช่วยเหลือที่ไม่ได้รับอนุญาต",
+ "พิจารณาคะแนนจากความถูกต้อง ความครบถ้วน และเกณฑ์เฉพาะของแต่ละกิจกรรม",
+ "หากมีข้อสงสัยให้สอบถามกรรมการก่อนเริ่มการแข่งขัน"
+ ]},
+ coding:{title:"การแข่งขันทักษะคอมพิวเตอร์และการเขียนโปรแกรม",items:[
+ "ผู้เข้าแข่งขันใช้เครื่องมือและซอฟต์แวร์ตามที่ผู้จัดกำหนดหรืออนุญาต",
+ "ผลงานต้องจัดทำขึ้นภายในเวลาการแข่งขัน และสามารถอธิบายแนวคิดการทำงานได้",
+ "ห้ามนำผลงานของผู้อื่นมาแอบอ้างเป็นของตนเองหรือรบกวนอุปกรณ์ของทีมอื่น",
+ "พิจารณาจากความถูกต้อง การแก้ปัญหา ความคิดสร้างสรรค์ และการทำงานตามโจทย์",
+ "ผู้เข้าแข่งขันต้องบันทึกและส่งผลงานตามช่องทางและเวลาที่กำหนด"
+ ]},
+ social:{title:"การแข่งขันตอบปัญหาสังคมศึกษา",items:[
+ "ผู้เข้าแข่งขันต้องรายงานตัวก่อนเริ่มการแข่งขันตามเวลาที่กำหนด",
+ "ตอบคำถามตามขอบเขตสาระสังคมศึกษาที่ผู้จัดประกาศ",
+ "ห้ามใช้เอกสาร โทรศัพท์ หรือค้นหาข้อมูลระหว่างการแข่งขัน",
+ "ให้คะแนนตามจำนวนคำตอบที่ถูกต้อง และใช้คำถามเพิ่มเติมเมื่อจำเป็น",
+ "การตัดสินของคณะกรรมการถือเป็นที่สิ้นสุด"
+ ]}
+};
+const modal=document.getElementById('ruleModal');
+const title=document.getElementById('modalTitle');
+const list=document.getElementById('ruleList');
+function closeRules(){modal.classList.remove('show');document.body.style.overflow='';}
+document.querySelectorAll('[data-rule]').forEach(button=>{
+ button.addEventListener('click',()=>{
+  const rule=rules[button.dataset.rule]; if(!rule)return;
+  title.textContent=rule.title+' · กติกา';
+  list.replaceChildren(...rule.items.map(item=>{const li=document.createElement('li');li.textContent=item;return li;}));
+  modal.classList.add('show');document.body.style.overflow='hidden';
+  document.getElementById('closeModal').focus();
+ });
+});
+document.getElementById('closeModal').addEventListener('click',closeRules);
+modal.addEventListener('click',e=>{if(e.target===modal)closeRules();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRules();});
+</script>
+</body>
+</html>
