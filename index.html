@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>HP Robotics Competition</title>
+<title> OpenHouse Horpra</title>
 
 <link rel="icon" type="image/png" href="Logo.png">
 
@@ -210,22 +210,15 @@ h1,h2,h3{ font-family:'Kanit',Arial,sans-serif; font-weight:700; }
 .robot-area{
     order:1;
     width:100%;
-    height:clamp(210px, 30vw, 330px);
+    height:clamp(210px, 30vw, 330px);   
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
 }
-.robot-area::before{
-    content:"";
-    position:absolute;
-    width:clamp(190px, 26vw, 290px);
-    aspect-ratio:1/1;
-    border-radius:50%;
-    background:var(--yellow-s);
-}
+
 .robot-placeholder{
-    width:clamp(220px, 32vw, 360px);
+    width:clamp(300px, 55vw, 620px);
     height:100%;
     position:relative;
     z-index:5;
@@ -235,10 +228,10 @@ h1,h2,h3{ font-family:'Kanit',Arial,sans-serif; font-weight:700; }
     overflow:visible;
 }
 .robot-placeholder img{
-    width:100%;
-    height:100%;
+    width:140%;
+    height:130%;
     transform:none;
-    max-width:100%;
+    max-width:none;
     object-fit:contain;
     display:block;
 }
