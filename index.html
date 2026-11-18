@@ -1162,9 +1162,8 @@ body::after{
     body::before,body::after,.hero::before{animation:none !important;}
 }
 
-\n/* SMOOTH FALLING CIRCLES — decorative background motion */
-.snowfall{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict}
-body>*:not(.snowfall){position:relative;z-index:1}
+/* SMOOTH FALLING CIRCLES — decorative background motion */
+.snowfall{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;contain:strict}
 .snowfall i{position:absolute;top:-12vh;left:var(--x);width:var(--size);height:var(--size);display:block;border-radius:50%;opacity:var(--alpha);background:var(--particle);box-shadow:0 0 10px var(--glow);filter:blur(var(--blur));transform:translate3d(0,-12vh,0);animation:snowFall var(--duration) linear var(--delay) infinite;will-change:transform}
 .snowfall i:nth-child(4n+1){--particle:rgba(255,255,255,.96);--glow:rgba(255,255,255,.42)}
 .snowfall i:nth-child(4n+2){--particle:rgba(255,224,122,.78);--glow:rgba(255,224,122,.22)}
@@ -1208,6 +1207,32 @@ body>*:not(.snowfall){position:relative;z-index:1}
   .qr-popup{max-width:340px;padding:25px 18px 20px;}
   .qr-image-frame{width:150px;height:150px;margin-top:16px;}
   .qr-join-btn{margin-top:16px;}
+}
+
+/* ===== LOGO FLOAT — โลโก้ลอยขึ้นลงเบาๆ ===== */
+@keyframes logoFloat{
+    0%,100%{ transform:translate3d(0,0,0) rotate(-.6deg); }
+    50%{ transform:translate3d(0,-12px,0) rotate(.6deg); }
+}
+
+.robot-placeholder img,
+.about-card-media img{
+    animation:logoFloat 5s ease-in-out infinite;
+    transform-origin:center;
+    will-change:transform;
+}
+
+@media(max-width:520px){
+    @keyframes logoFloat{
+        0%,100%{ transform:translate3d(0,0,0) rotate(-.5deg); }
+        50%{ transform:translate3d(0,-8px,0) rotate(.5deg); }
+    }
+}
+
+/* คนที่ตั้งค่าลดการเคลื่อนไหวในเครื่อง จะไม่เห็นโลโก้ขยับ */
+@media(prefers-reduced-motion:reduce){
+    .robot-placeholder img,
+    .about-card-media img{ animation:none; }
 }
 
 </style>
@@ -2090,4 +2115,3 @@ helpForm.addEventListener("submit", async function(e){
 
 </body>
 </html>
-</document_content>
