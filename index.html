@@ -1039,11 +1039,188 @@ footer strong{letter-spacing:.8px;}
     *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;}
 }
 
+
+
+/* ============================================================
+   LOGO + AMBIENT MOTION PATCH
+   ปรับเฉพาะโลโก้ Hero, พื้นหลัง และการแสดงผลบนมือถือ
+   ============================================================ */
+body{
+    position:relative;
+    isolation:isolate;
+    background:#fbfcf9;
+}
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    z-index:-1;
+    pointer-events:none;
+    border-radius:50%;
+    filter:blur(2px);
+    opacity:.5;
+    will-change:transform;
+}
+body::before{
+    width:clamp(150px,24vw,310px);
+    height:clamp(150px,24vw,310px);
+    top:12vh;
+    left:-9vw;
+    background:radial-gradient(circle,rgba(247,217,107,.20) 0%,rgba(247,217,107,.07) 48%,transparent 72%);
+    animation:ambientDriftA 24s ease-in-out infinite alternate;
+}
+body::after{
+    width:clamp(190px,28vw,360px);
+    height:clamp(190px,28vw,360px);
+    right:-10vw;
+    bottom:8vh;
+    background:radial-gradient(circle,rgba(243,154,85,.14) 0%,rgba(243,154,85,.05) 48%,transparent 72%);
+    animation:ambientDriftB 29s ease-in-out infinite alternate;
+}
+@keyframes ambientDriftA{
+    from{transform:translate3d(0,0,0) scale(.94)}
+    to{transform:translate3d(7vw,8vh,0) scale(1.08)}
+}
+@keyframes ambientDriftB{
+    from{transform:translate3d(0,0,0) scale(1)}
+    to{transform:translate3d(-6vw,-7vh,0) scale(.92)}
+}
+
+/* Hero ให้สะอาด ไม่มีวง/ปื้นสีเขียวหลังโลโก้ */
+.hero{
+    background:#fff;
+    border-color:rgba(225,233,223,.72);
+}
+.hero::before{
+    width:360px;
+    height:360px;
+    right:-120px;
+    top:-160px;
+    border-color:rgba(29,48,41,.055);
+    box-shadow:0 0 0 24px rgba(29,48,41,.018),0 0 0 50px rgba(29,48,41,.012);
+    animation:heroOrbit 42s linear infinite;
+}
+@keyframes heroOrbit{to{transform:rotate(360deg)}}
+.robot-area{
+    background:transparent !important;
+    border-radius:0;
+    overflow:visible;
+}
+.robot-area::before{display:none !important;}
+.robot-placeholder{
+    width:100%;
+    max-width:560px;
+    min-width:0;
+    height:auto;
+    padding:clamp(8px,1.4vw,18px);
+    overflow:visible;
+}
+.robot-placeholder img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    max-height:clamp(210px,32vw,390px);
+    object-fit:contain;
+    transform:none;
+    filter:drop-shadow(0 12px 18px rgba(29,48,41,.09));
+}
+
+@media(max-width:850px){
+    .hero{
+        background:#fff;
+        padding:clamp(20px,5vw,42px) clamp(16px,5vw,30px) 52px;
+        gap:8px;
+    }
+    .robot-area{
+        width:100%;
+        height:auto;
+        min-height:0;
+        padding:0;
+        margin:0 auto 10px;
+    }
+    .robot-placeholder{
+        width:min(100%,620px);
+        max-width:620px;
+        padding:0;
+    }
+    .robot-placeholder img{
+        width:100%;
+        height:auto;
+        max-height:none;
+        object-fit:contain;
+    }
+}
+@media(max-width:520px){
+    .hero{overflow:hidden;padding:20px 14px 48px;}
+    .robot-area{width:100%;margin-bottom:8px;}
+    .robot-placeholder{width:100%;padding:0 2px;}
+    .robot-placeholder img{width:100%;max-width:100%;height:auto;}
+    .hero::before{width:220px;height:220px;right:-130px;top:-100px;}
+}
+@media(prefers-reduced-motion:reduce){
+    body::before,body::after,.hero::before{animation:none !important;}
+}
+
+\n/* SMOOTH FALLING CIRCLES — decorative background motion */
+.snowfall{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict}
+body>*:not(.snowfall){position:relative;z-index:1}
+.snowfall i{position:absolute;top:-12vh;left:var(--x);width:var(--size);height:var(--size);display:block;border-radius:50%;opacity:var(--alpha);background:var(--particle);box-shadow:0 0 10px var(--glow);filter:blur(var(--blur));transform:translate3d(0,-12vh,0);animation:snowFall var(--duration) linear var(--delay) infinite;will-change:transform}
+.snowfall i:nth-child(4n+1){--particle:rgba(255,255,255,.96);--glow:rgba(255,255,255,.42)}
+.snowfall i:nth-child(4n+2){--particle:rgba(255,224,122,.78);--glow:rgba(255,224,122,.22)}
+.snowfall i:nth-child(4n+3){--particle:rgba(220,239,201,.95);--glow:rgba(220,239,201,.35)}
+.snowfall i:nth-child(4n){--particle:rgba(255,178,105,.58);--glow:rgba(255,178,105,.20)}
+.snowfall i:nth-child(1){--x:4%;--size:5px;--alpha:0.62;--duration:18s;--delay:-13s;--blur:0.2px}
+.snowfall i:nth-child(2){--x:9%;--size:8px;--alpha:0.45;--duration:24s;--delay:-4s;--blur:0.5px}
+.snowfall i:nth-child(3){--x:14%;--size:4px;--alpha:0.7;--duration:21s;--delay:-17s;--blur:0px}
+.snowfall i:nth-child(4){--x:19%;--size:6px;--alpha:0.5;--duration:27s;--delay:-8s;--blur:0.4px}
+.snowfall i:nth-child(5){--x:24%;--size:9px;--alpha:0.35;--duration:23s;--delay:-19s;--blur:1px}
+.snowfall i:nth-child(6){--x:29%;--size:4px;--alpha:0.66;--duration:19s;--delay:-6s;--blur:0px}
+.snowfall i:nth-child(7){--x:34%;--size:7px;--alpha:0.48;--duration:26s;--delay:-15s;--blur:0.6px}
+.snowfall i:nth-child(8){--x:39%;--size:5px;--alpha:0.58;--duration:22s;--delay:-2s;--blur:0.2px}
+.snowfall i:nth-child(9){--x:44%;--size:8px;--alpha:0.38;--duration:28s;--delay:-21s;--blur:0.8px}
+.snowfall i:nth-child(10){--x:49%;--size:4px;--alpha:0.68;--duration:20s;--delay:-10s;--blur:0px}
+.snowfall i:nth-child(11){--x:54%;--size:6px;--alpha:0.52;--duration:25s;--delay:-18s;--blur:0.3px}
+.snowfall i:nth-child(12){--x:59%;--size:9px;--alpha:0.34;--duration:29s;--delay:-7s;--blur:1px}
+.snowfall i:nth-child(13){--x:64%;--size:5px;--alpha:0.6;--duration:19s;--delay:-14s;--blur:0.2px}
+.snowfall i:nth-child(14){--x:69%;--size:7px;--alpha:0.46;--duration:24s;--delay:-3s;--blur:0.6px}
+.snowfall i:nth-child(15){--x:74%;--size:4px;--alpha:0.7;--duration:21s;--delay:-20s;--blur:0px}
+.snowfall i:nth-child(16){--x:79%;--size:8px;--alpha:0.4;--duration:27s;--delay:-11s;--blur:0.8px}
+.snowfall i:nth-child(17){--x:84%;--size:5px;--alpha:0.58;--duration:23s;--delay:-5s;--blur:0.2px}
+.snowfall i:nth-child(18){--x:89%;--size:9px;--alpha:0.34;--duration:30s;--delay:-16s;--blur:1px}
+.snowfall i:nth-child(19){--x:94%;--size:4px;--alpha:0.66;--duration:18s;--delay:-9s;--blur:0px}
+.snowfall i:nth-child(20){--x:12%;--size:3px;--alpha:0.52;--duration:32s;--delay:-24s;--blur:0px}
+.snowfall i:nth-child(21){--x:37%;--size:3px;--alpha:0.58;--duration:31s;--delay:-12s;--blur:0px}
+.snowfall i:nth-child(22){--x:62%;--size:3px;--alpha:0.54;--duration:34s;--delay:-27s;--blur:0px}
+.snowfall i:nth-child(23){--x:81%;--size:3px;--alpha:0.6;--duration:33s;--delay:-22s;--blur:0px}
+.snowfall i:nth-child(24){--x:97%;--size:6px;--alpha:0.42;--duration:26s;--delay:-6s;--blur:0.5px}
+@keyframes snowFall{0%{transform:translate3d(0,-14vh,0) rotate(0deg)}25%{transform:translate3d(18px,25vh,0) rotate(90deg)}50%{transform:translate3d(-12px,52vh,0) rotate(180deg)}75%{transform:translate3d(20px,79vh,0) rotate(270deg)}100%{transform:translate3d(-8px,114vh,0) rotate(360deg)}}
+@media(max-width:600px){.snowfall i:nth-child(n+17){display:none}.snowfall i{box-shadow:0 0 7px var(--glow)}}
+@media(prefers-reduced-motion:reduce){.snowfall{display:none!important}}
+
+
+/* Entry popup polish */
+.qr-popup-overlay{overscroll-behavior:contain;}
+.qr-popup{max-height:calc(100dvh - 32px);overflow-y:auto;}
+.qr-image-frame img{object-fit:contain;}
+@media(max-width:480px){
+  .qr-popup-overlay{padding:14px;}
+  .qr-popup{max-width:340px;padding:25px 18px 20px;}
+  .qr-image-frame{width:150px;height:150px;margin-top:16px;}
+  .qr-join-btn{margin-top:16px;}
+}
+
 </style>
 </head>
 
 
 <body>
+
+<!-- Smooth floating snow / circle particles (decorative only) -->
+<div class="snowfall" aria-hidden="true">
+  <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+</div>
+
 
 <!-- NAVBAR -->
 <header class="navbar">
@@ -1144,7 +1321,7 @@ footer strong{letter-spacing:.8px;}
 
             <img
                 src="logooo.png"
-                alt="HP Robotics Robot"
+                alt="OpenHouse Horpra — Ignite the Future"
             >
 
         </div>
@@ -1182,21 +1359,18 @@ footer strong{letter-spacing:.8px;}
         <div class="about-card-content">
 
             <p>
-                HP Robotics Competition ครั้งที่ 1 คือเวทีการแข่งขัน<span class="nw">หุ่นยนต์</span>ที่จัดขึ้นโดยโรงเรียนหอพระ จังหวัดเชียงใหม่
-                เปิดโอกาสให้นักเรียนได้แสดงความสามารถด้านการออกแบบ เขียนโปรแกรม และควบคุม<span class="nw">หุ่นยนต์</span>
-                ผ่านโจทย์การแข่งขัน 2 รูปแบบที่ท้าทายทั้งความเร็วและความแม่นยำ
+                กิจกรรมเปิดบ้านวิชาการ โรงเรียนหอพระ จังหวัดเชียงใหม่ เปิดโอกาสให้นักเรียน ผู้ปกครอง และผู้สนใจได้เยี่ยมชมบรรยากาศการเรียนรู้ พร้อมสัมผัสประสบการณ์กิจกรรมทางวิชาการจากกลุ่มสาระการเรียนรู้ต่าง ๆ ผ่านนิทรรศการ การสาธิต และกิจกรรมสร้างสรรค์ที่หลากหลาย
             </p>
 
             <p>
-                งานนี้มุ่งส่งเสริมให้นักเรียนได้เรียนรู้กระบวนการคิดเชิงวิศวกรรม การแก้ปัญหาเฉพาะหน้า
-                และการทำงานเป็นทีม เปิดกว้างสำหรับทุกโรงเรียนที่สนใจเข้าร่วม
+                มุ่งส่งเสริมการเรียนรู้ เปิดโลกแห่งความรู้และทักษะ ตลอดจนสร้างแรงบันดาลใจให้ผู้เข้าร่วมได้ค้นพบความสามารถและความสนใจของตนเอง ภายใต้บรรยากาศแห่งการเรียนรู้ที่สนุกสนานและเต็มไปด้วยความคิดสร้างสรรค์
             </p>
 
             <div class="about-chips">
-                <span class="about-chip">ออกแบบ</span>
-                <span class="about-chip">เขียนโปรแกรม</span>
-                <span class="about-chip">ควบคุมหุ่นยนต์</span>
-                <span class="about-chip">ทำงานเป็นทีม</span>
+                <span class="about-chip">คิด</span>
+                <span class="about-chip">วิเคราะห์</span>
+                <span class="about-chip">วางแผน</span>
+                <span class="about-chip">เรียนรู้</span>
             </div>
 
             <div class="about-stats">
@@ -1504,32 +1678,32 @@ footer strong{letter-spacing:.8px;}
 
         <a href="lisSoccer.html" class="event-box">
             <div class="stat-number">12</div>
-            <h3>Robot Soccer Championship</h3>
+            <h3>คณิตศาสตร์</h3>
         </a>
 
         <a href="lisRecycling.html" class="event-box">
             <div class="stat-number">34</div>
-            <h3>Recycling Mission Challenge</h3>
+            <h3>ภาษาต่างประเทศ</h3>
         </a>
 
         <div class="event-box">
             <div class="stat-number">0</div>
-            <h3>รายการแข่งขัน 3</h3>
+            <h3>ภาษาไทย</h3>
         </div>
 
         <div class="event-box">
             <div class="stat-number">0</div>
-            <h3>รายการแข่งขัน 4</h3>
+            <h3>ศาสนาและวัฒนธรรม</h3>
         </div>
 
         <div class="event-box">
             <div class="stat-number">0</div>
-            <h3>รายการแข่งขัน 5</h3>
+            <h3>สุขศึกษาและพลศึกษา</h3>
         </div>
 
         <div class="event-box">
             <div class="stat-number">0</div>
-            <h3>รายการแข่งขัน 6</h3>
+            <h3>ศิลปศึกษา</h3>
         </div>
 
         <div class="event-box event-box-total">
@@ -1684,7 +1858,7 @@ footer strong{letter-spacing:.8px;}
 
         <!-- TODO: แทนที่ src ด้วยรูป QR ของกลุ่ม LINE OpenChat จริง -->
         <div class="qr-image-frame">
-            <img src="line-qr.jpg" alt="QR เข้าร่วมกลุ่ม LINE OpenChat">
+            <img src="line-qr.png" alt="QR เข้าร่วมกลุ่ม LINE OpenChat" loading="eager">
         </div>
 
         <!-- TODO: แทนที่ href ด้วยลิงก์กลุ่ม LINE OpenChat จริง -->
@@ -1736,36 +1910,37 @@ document
     });
 
 
-/* QR POPUP — เข้าร่วมกลุ่ม LINE OpenChat
-   เด้งอัตโนมัติหลังโหลดหน้าแรกไปสักครู่ และจะไม่เด้งซ้ำถ้าผู้ใช้เคยปิดไปแล้วในเซสชันนี้ */
+/* QR POPUP — เปิดอัตโนมัติทุกครั้งที่เข้าหน้าเว็บไซต์
+   ผู้ใช้สามารถปิดได้ด้วยปุ่ม X, คลิกพื้นหลัง หรือกด Escape */
 
 const qrPopupOverlay = document.getElementById("qrPopupOverlay");
 const qrPopupClose = document.getElementById("qrPopupClose");
-const QR_POPUP_SEEN_KEY = "hprobotics_qr_popup_seen";
 
 function openQrPopup(){
-    qrPopupOverlay.classList.add("show");
+    if (qrPopupOverlay) qrPopupOverlay.classList.add("show");
 }
 
 function closeQrPopup(){
-    qrPopupOverlay.classList.remove("show");
-    sessionStorage.setItem(QR_POPUP_SEEN_KEY, "1");
+    if (qrPopupOverlay) qrPopupOverlay.classList.remove("show");
 }
 
-if(!sessionStorage.getItem(QR_POPUP_SEEN_KEY)){
-    setTimeout(openQrPopup, 900);
+/* แสดงหลังหน้าเว็บเริ่มโหลด เพื่อให้ transition ทำงานสมูท */
+if (qrPopupOverlay) {
+    window.addEventListener("load", function(){
+        window.setTimeout(openQrPopup, 350);
+    }, { once: true });
 }
 
-qrPopupClose.addEventListener("click", closeQrPopup);
+if (qrPopupClose) qrPopupClose.addEventListener("click", closeQrPopup);
 
-qrPopupOverlay.addEventListener("click", function(e){
-    if(e.target === qrPopupOverlay){
-        closeQrPopup();
-    }
-});
+if (qrPopupOverlay) {
+    qrPopupOverlay.addEventListener("click", function(e){
+        if(e.target === qrPopupOverlay) closeQrPopup();
+    });
+}
 
 document.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && qrPopupOverlay.classList.contains("show")){
+    if(e.key === "Escape" && qrPopupOverlay && qrPopupOverlay.classList.contains("show")){
         closeQrPopup();
     }
 });
