@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -309,7 +308,7 @@ a{text-decoration:none;color:inherit}
     min-width:0;
     display:flex;
     flex-direction:column;
-    padding:16px 16px 23px;
+    padding:16px 16px 18px;
     border:1px solid #e3eade;
     border-radius:24px;
     background:linear-gradient(145deg,#fff,#fbfcf8);
@@ -384,37 +383,80 @@ a{text-decoration:none;color:inherit}
     font-weight:600;
 }
 
+/* ===== ส่วนปุ่มด้านล่างการ์ด — ปุ่มเต็มความกว้าง เด่นชัด ===== */
 .card-actions{
     margin-top:auto;
-    padding-top:15px;
+    padding-top:18px;
     border-top:1px solid #edf0e9;
     display:flex;
-    align-items:center;
-    justify-content:space-between;
+    flex-direction:column;
+    align-items:stretch;
     gap:10px;
 }
 
 .detail-hint{
     color:#829084;
     font-size:11px;
+    letter-spacing:.5px;
+    text-align:center;
 }
 
 .rule-btn{
-    display:inline-block;
-    padding:9px 16px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:15px 20px;
     border:0;
-    border-radius:999px;
-    background:var(--orange);
-    color:#342516;
-    font-size:12px;
-    font-weight:700;
+    border-radius:16px;
+    background:linear-gradient(120deg,#f39a55 0%,#f7b955 55%,#f7d96b 100%);
+    color:#2b1a0a;
+    font-size:14.5px;
+    font-weight:800;
+    letter-spacing:.3px;
     white-space:nowrap;
-    transition:.2s;
+    overflow:hidden;
+    isolation:isolate;
+    box-shadow:
+        0 12px 24px rgba(243,154,85,.34),
+        inset 0 1px 0 rgba(255,255,255,.45);
+    transition:transform .25s,box-shadow .25s,filter .25s;
+}
+
+/* แสงวิ่งผ่านปุ่มตอนชี้เมาส์ */
+.rule-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-60%;
+    width:45%;
+    height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg);
+    transition:left .6s ease;
+    z-index:-1;
 }
 
 .rule-btn:hover{
-    background:#ffb16f;
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    filter:saturate(1.08);
+    box-shadow:
+        0 18px 32px rgba(243,154,85,.46),
+        inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.rule-btn:hover::before{
+    left:120%;
+}
+
+.rule-btn:active{
+    transform:translateY(-1px);
+}
+
+.rule-btn:focus-visible{
+    outline:3px solid rgba(36,92,66,.45);
+    outline-offset:3px;
 }
 
 /* ================= NOTE & FOOTER ================= */
@@ -492,7 +534,7 @@ footer{
     }
 
     .card{
-        padding:14px 14px 20px;
+        padding:14px 14px 16px;
         border-radius:20px;
     }
 
@@ -509,10 +551,99 @@ footer{
         transition:none!important;
     }
 }
+
+/* ============================================================
+   พื้นหลังเคลื่อนไหวเบาๆ แบบหน้าหลัก
+   (แสงนุ่มลอยช้าๆ + วงกลมเล็กๆ ร่วงลงมา)
+   ============================================================ */
+body{
+    position:relative;
+    isolation:isolate;
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    z-index:-1;
+    pointer-events:none;
+    border-radius:50%;
+    filter:blur(2px);
+    opacity:.5;
+    will-change:transform;
+}
+body::before{
+    width:clamp(150px,24vw,310px);
+    height:clamp(150px,24vw,310px);
+    top:12vh;
+    left:-9vw;
+    background:radial-gradient(circle,rgba(247,217,107,.20) 0%,rgba(247,217,107,.07) 48%,transparent 72%);
+    animation:ambientDriftA 24s ease-in-out infinite alternate;
+}
+body::after{
+    width:clamp(190px,28vw,360px);
+    height:clamp(190px,28vw,360px);
+    right:-10vw;
+    bottom:8vh;
+    background:radial-gradient(circle,rgba(243,154,85,.14) 0%,rgba(243,154,85,.05) 48%,transparent 72%);
+    animation:ambientDriftB 29s ease-in-out infinite alternate;
+}
+@keyframes ambientDriftA{
+    from{transform:translate3d(0,0,0) scale(.94)}
+    to{transform:translate3d(7vw,8vh,0) scale(1.08)}
+}
+@keyframes ambientDriftB{
+    from{transform:translate3d(0,0,0) scale(1)}
+    to{transform:translate3d(-6vw,-7vh,0) scale(.92)}
+}
+
+/* วงกลมวงแหวนในกรอบ hero หมุนช้าๆ */
+.hero::before{ animation:heroOrbit 42s linear infinite; }
+@keyframes heroOrbit{to{transform:rotate(360deg)}}
+
+/* SMOOTH FALLING CIRCLES — decorative background motion */
+.snowfall{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;contain:strict}
+.snowfall i{position:absolute;top:-12vh;left:var(--x);width:var(--size);height:var(--size);display:block;border-radius:50%;opacity:var(--alpha);background:var(--particle);box-shadow:0 0 10px var(--glow);filter:blur(var(--blur));transform:translate3d(0,-12vh,0);animation:snowFall var(--duration) linear var(--delay) infinite;will-change:transform}
+.snowfall i:nth-child(4n+1){--particle:rgba(255,255,255,.96);--glow:rgba(255,255,255,.42)}
+.snowfall i:nth-child(4n+2){--particle:rgba(255,224,122,.78);--glow:rgba(255,224,122,.22)}
+.snowfall i:nth-child(4n+3){--particle:rgba(220,239,201,.95);--glow:rgba(220,239,201,.35)}
+.snowfall i:nth-child(4n){--particle:rgba(255,178,105,.58);--glow:rgba(255,178,105,.20)}
+.snowfall i:nth-child(1){--x:4%;--size:5px;--alpha:0.62;--duration:18s;--delay:-13s;--blur:0.2px}
+.snowfall i:nth-child(2){--x:9%;--size:8px;--alpha:0.45;--duration:24s;--delay:-4s;--blur:0.5px}
+.snowfall i:nth-child(3){--x:14%;--size:4px;--alpha:0.7;--duration:21s;--delay:-17s;--blur:0px}
+.snowfall i:nth-child(4){--x:19%;--size:6px;--alpha:0.5;--duration:27s;--delay:-8s;--blur:0.4px}
+.snowfall i:nth-child(5){--x:24%;--size:9px;--alpha:0.35;--duration:23s;--delay:-19s;--blur:1px}
+.snowfall i:nth-child(6){--x:29%;--size:4px;--alpha:0.66;--duration:19s;--delay:-6s;--blur:0px}
+.snowfall i:nth-child(7){--x:34%;--size:7px;--alpha:0.48;--duration:26s;--delay:-15s;--blur:0.6px}
+.snowfall i:nth-child(8){--x:39%;--size:5px;--alpha:0.58;--duration:22s;--delay:-2s;--blur:0.2px}
+.snowfall i:nth-child(9){--x:44%;--size:8px;--alpha:0.38;--duration:28s;--delay:-21s;--blur:0.8px}
+.snowfall i:nth-child(10){--x:49%;--size:4px;--alpha:0.68;--duration:20s;--delay:-10s;--blur:0px}
+.snowfall i:nth-child(11){--x:54%;--size:6px;--alpha:0.52;--duration:25s;--delay:-18s;--blur:0.3px}
+.snowfall i:nth-child(12){--x:59%;--size:9px;--alpha:0.34;--duration:29s;--delay:-7s;--blur:1px}
+.snowfall i:nth-child(13){--x:64%;--size:5px;--alpha:0.6;--duration:19s;--delay:-14s;--blur:0.2px}
+.snowfall i:nth-child(14){--x:69%;--size:7px;--alpha:0.46;--duration:24s;--delay:-3s;--blur:0.6px}
+.snowfall i:nth-child(15){--x:74%;--size:4px;--alpha:0.7;--duration:21s;--delay:-20s;--blur:0px}
+.snowfall i:nth-child(16){--x:79%;--size:8px;--alpha:0.4;--duration:27s;--delay:-11s;--blur:0.8px}
+.snowfall i:nth-child(17){--x:84%;--size:5px;--alpha:0.58;--duration:23s;--delay:-5s;--blur:0.2px}
+.snowfall i:nth-child(18){--x:89%;--size:9px;--alpha:0.34;--duration:30s;--delay:-16s;--blur:1px}
+.snowfall i:nth-child(19){--x:94%;--size:4px;--alpha:0.66;--duration:18s;--delay:-9s;--blur:0px}
+.snowfall i:nth-child(20){--x:12%;--size:3px;--alpha:0.52;--duration:32s;--delay:-24s;--blur:0px}
+.snowfall i:nth-child(21){--x:37%;--size:3px;--alpha:0.58;--duration:31s;--delay:-12s;--blur:0px}
+.snowfall i:nth-child(22){--x:62%;--size:3px;--alpha:0.54;--duration:34s;--delay:-27s;--blur:0px}
+.snowfall i:nth-child(23){--x:81%;--size:3px;--alpha:0.6;--duration:33s;--delay:-22s;--blur:0px}
+.snowfall i:nth-child(24){--x:97%;--size:6px;--alpha:0.42;--duration:26s;--delay:-6s;--blur:0.5px}
+@keyframes snowFall{0%{transform:translate3d(0,-14vh,0) rotate(0deg)}25%{transform:translate3d(18px,25vh,0) rotate(90deg)}50%{transform:translate3d(-12px,52vh,0) rotate(180deg)}75%{transform:translate3d(20px,79vh,0) rotate(270deg)}100%{transform:translate3d(-8px,114vh,0) rotate(360deg)}}
+@media(max-width:600px){.snowfall i:nth-child(n+17){display:none}.snowfall i{box-shadow:0 0 7px var(--glow)}}
+@media(prefers-reduced-motion:reduce){.snowfall{display:none!important}}
 </style>
 </head>
 
 <body>
+
+<!-- Smooth floating circle particles (decorative only) -->
+<div class="snowfall" aria-hidden="true">
+  <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+</div>
 
 <!-- HEADER เหมือนหน้าหลัก -->
 <header class="navbar">
@@ -608,7 +739,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 1"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
@@ -634,7 +765,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 2"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
@@ -660,7 +791,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 3"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
@@ -686,7 +817,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 4"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
@@ -712,7 +843,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 5"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
@@ -738,7 +869,7 @@ footer{
             <div class="card-actions">
                 <span class="detail-hint">ดูรายละเอียดรายการ</span>
                 <a class="rule-btn" href="ใส่ลิงก์ Google Drive รายการที่ 6"
-                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด ↗</a>
+                   target="_blank" rel="noopener noreferrer">อ่านรายละเอียด </a>
             </div>
         </article>
 
