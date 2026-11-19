@@ -18,18 +18,18 @@
    เปลี่ยนสีทั้งเว็บได้ที่ตัวแปรชุดนี้ที่เดียว
    ============================================================ */
 :root{
-    --bg:#f6faf1;          /* พื้นหลังหลัก (เขียวอ่อนจางมาก) */
-    --white:#ffffff;       /* การ์ด */
-    --green:#dcefc9;       /* เขียวอ่อน (พื้นป้าย/กล่อง) */
-    --green-d:#2f6b3a;     /* เขียวเข้ม (ตัวหนังสือเน้น) */
-    --yellow:#ffe27a;      /* เหลือง */
-    --yellow-s:#fff6cf;    /* เหลืองอ่อน */
-    --orange:#ff9a3d;      /* ส้ม (ปุ่มหลัก) */
-    --orange-s:#fff0dc;    /* ส้มอ่อน */
-    --orange-d:#b45309;    /* ส้มเข้ม (ตัวหนังสือเน้น) */
-    --ink:#23301f;         /* ตัวหนังสือหลัก */
-    --muted:#5c6b57;       /* ตัวหนังสือรอง */
-    --line:#e0ead4;        /* เส้นขอบ */
+    --bg:#f6faf1;
+    --white:#ffffff;
+    --green:#dcefc9;
+    --green-d:#2f6b3a;
+    --yellow:#ffe27a;
+    --yellow-s:#fff6cf;
+    --orange:#ff9a3d;
+    --orange-s:#fff0dc;
+    --orange-d:#b45309;
+    --ink:#23301f;
+    --muted:#5c6b57;
+    --line:#e0ead4;
 }
 
 *{ margin:0; padding:0; box-sizing:border-box; }
@@ -780,7 +780,6 @@ footer a{ color:var(--green-d); font-weight:700; text-decoration:none; }
 
 /* ============================================================
    OPEN HOUSE VISUAL REFRESH — CSS ONLY
-   โครงสร้าง HTML, ข้อความ, ลิงก์ และ JavaScript เดิมไม่เปลี่ยน
    ============================================================ */
 :root{
     --bg:#f7f8f2;
@@ -833,7 +832,7 @@ body{
 .menu-button{border-color:#dce8d8;background:#f7faf4;}
 .mobile-menu{top:98px;border-radius:18px;box-shadow:0 20px 50px rgba(29,48,41,.16);}
 
-/* Open House hero: exhibition / discovery feeling */
+/* Open House hero */
 .hero{
     position:relative;
     width:min(1240px,calc(100% - 48px));
@@ -897,7 +896,7 @@ body{
 .about{margin:0 auto 86px;}
 .about .section-title{text-align:left;}
 
-/* About / school showcase panel */
+/* About */
 .about-card{
     margin-top:26px;
     border:1px solid #e5ebdf;
@@ -1039,11 +1038,8 @@ footer strong{letter-spacing:.8px;}
     *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;}
 }
 
-
-
 /* ============================================================
    LOGO + AMBIENT MOTION PATCH
-   ปรับเฉพาะโลโก้ Hero, พื้นหลัง และการแสดงผลบนมือถือ
    ============================================================ */
 body{
     position:relative;
@@ -1086,7 +1082,6 @@ body::after{
     to{transform:translate3d(-6vw,-7vh,0) scale(.92)}
 }
 
-/* Hero ให้สะอาด ไม่มีวง/ปื้นสีเขียวหลังโลโก้ */
 .hero{
     background:#fff;
     border-color:rgba(225,233,223,.72);
@@ -1197,7 +1192,6 @@ body::after{
 @media(max-width:600px){.snowfall i:nth-child(n+17){display:none}.snowfall i{box-shadow:0 0 7px var(--glow)}}
 @media(prefers-reduced-motion:reduce){.snowfall{display:none!important}}
 
-
 /* Entry popup polish */
 .qr-popup-overlay{overscroll-behavior:contain;}
 .qr-popup{max-height:calc(100dvh - 32px);overflow-y:auto;}
@@ -1209,7 +1203,7 @@ body::after{
   .qr-join-btn{margin-top:16px;}
 }
 
-/* ===== LOGO FLOAT — โลโก้ลอยขึ้นลงเบาๆ ===== */
+/* ===== LOGO FLOAT ===== */
 @keyframes logoFloat{
     0%,100%{ transform:translate3d(0,0,0) rotate(-.6deg); }
     50%{ transform:translate3d(0,-12px,0) rotate(.6deg); }
@@ -1229,12 +1223,10 @@ body::after{
     }
 }
 
-/* คนที่ตั้งค่าลดการเคลื่อนไหวในเครื่อง จะไม่เห็นโลโก้ขยับ */
 @media(prefers-reduced-motion:reduce){
     .robot-placeholder img,
     .about-card-media img{ animation:none; }
 }
-
 </style>
 </head>
 
@@ -1276,7 +1268,8 @@ body::after{
             ผู้เข้าแข่งขัน
         </a>
 
-        <a href="https://drive.google.com/file/d/1DoPNDtLpOqPGULZhIQ41bGG6HZJTXDjo/view?usp=drive_link" target="_blank" rel="noopener">
+        <!-- เปลี่ยนจากลิงก์ Google Drive เป็นหน้า Schedule.html -->
+        <a href="Schedule.html">
             กำหนดการ
         </a>
 
@@ -1313,7 +1306,7 @@ body::after{
         ผู้เข้าแข่งขัน
     </a>
 
-    <a href="https://drive.google.com/file/d/1DoPNDtLpOqPGULZhIQ41bGG6HZJTXDjo/view?usp=drive_link" target="_blank" rel="noopener">
+    <a href="Schedule.html">
         กำหนดการ
     </a>
 
@@ -1570,10 +1563,8 @@ body::after{
 
     <!-- SCHEDULE -->
     <a
-        href="https://drive.google.com/file/d/1DoPNDtLpOqPGULZhIQ41bGG6HZJTXDjo/view?usp=drive_link"
+        href="Schedule.html"
         class="card"
-        target="_blank"
-        rel="noopener"
     >
 
         <div>
@@ -1883,12 +1874,10 @@ body::after{
             OPEN HOUSE HORPRA ได้ที่นี่
         </p>
 
-        <!-- TODO: แทนที่ src ด้วยรูป QR ของกลุ่ม LINE OpenChat จริง -->
         <div class="qr-image-frame">
             <img src="qr.jpg" alt="QR เข้าร่วมกลุ่ม LINE OpenChat" loading="eager">
         </div>
 
-        <!-- TODO: แทนที่ href ด้วยลิงก์กลุ่ม LINE OpenChat จริง -->
         <a href="https://line.me/ti/g2/Z71iofjWIb-d-tJz_3Lmy6XxRPbqs7350cuBog?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="btn qr-join-btn" target="_blank" rel="noopener">
             เข้าร่วมกลุ่ม
         </a>
@@ -1951,7 +1940,6 @@ function closeQrPopup(){
     if (qrPopupOverlay) qrPopupOverlay.classList.remove("show");
 }
 
-/* แสดงหลังหน้าเว็บเริ่มโหลด เพื่อให้ transition ทำงานสมูท */
 if (qrPopupOverlay) {
     window.addEventListener("load", function(){
         window.setTimeout(openQrPopup, 350);
@@ -2034,7 +2022,6 @@ countdownInterval = setInterval(updateCountdown, 1000);
 
 /* HELP REQUEST — เปิด/ปิดฟอร์ม และส่งข้อความไปเก็บที่ Supabase */
 
-/* TODO: ใส่ Supabase anon public key ของโปรเจกต์ (หาได้ที่ Project Settings > API) */
 const SUPABASE_URL = "https://keckrebnpvcromotopzw.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_vOulAP5DW2kk7Ldl2TI-cg_lH9Mya_8";
 const SUPABASE_TABLE = "help_requests";
