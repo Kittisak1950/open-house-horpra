@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>กำหนดการ | OpenHouse Horpra</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#f7f8f2;
+    --white:#ffffff;
+    --green:#e4f0d8;
+    --green-d:#245c42;
+    --yellow:#f7d96b;
+    --yellow-s:#fff8dc;
+    --orange:#f39a55;
+    --orange-s:#fff0e2;
+    --orange-d:#a95c26;
+    --ink:#1d3029;
+    --muted:#65756d;
+    --line:#e1e9df;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+
+body{
+    background:
+      radial-gradient(ellipse at 85% 8%,rgba(220,238,205,.52),transparent 27%),
+      radial-gradient(ellipse at 8% 36%,rgba(255,239,202,.34),transparent 25%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Kanit',Tahoma,sans-serif;
+    overflow-x:hidden;
+    position:relative;
+    isolation:isolate;
+}
+
+a{text-decoration:none;color:inherit}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    position:sticky;top:12px;z-index:150;
+    width:min(1240px,calc(100% - 48px));height:76px;
+    margin:12px auto 0;padding:0 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    border:1px solid rgba(225,233,223,.9);border-radius:22px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    box-shadow:0 12px 36px rgba(35,64,46,.07);
+}
+.logo{display:flex;align-items:center;gap:13px;color:var(--ink)}
+.logo-box{width:46px;height:46px;padding:3px;border-radius:13px;background:#f1f6eb;flex-shrink:0;overflow:hidden}
+.logo-box img{width:100%;height:100%;object-fit:contain}
+.logo-text strong{display:block;font-size:15px;letter-spacing:1.4px;white-space:nowrap}
+.logo-text span{display:block;color:var(--green-d);font-size:9px;letter-spacing:2.2px;margin-top:3px}
+
+.desktop-menu{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px)}
+.desktop-menu a{font-size:13px;font-weight:500;color:#586a60;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+.desktop-menu a:hover,.desktop-menu a.active{color:var(--green-d);border-color:var(--orange)}
+
+.menu-button{
+    display:none;width:46px;height:46px;border:1px solid #dce8d8;border-radius:12px;
+    background:#f7faf4;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;cursor:pointer;flex-shrink:0;
+}
+.menu-button span{width:24px;height:3px;background:var(--green-d);border-radius:5px;transition:.3s}
+.menu-button.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.menu-button.active span:nth-child(2){opacity:0}
+.menu-button.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+.mobile-menu{
+    display:none;position:fixed;z-index:200;top:98px;right:24px;width:260px;
+    max-width:calc(100vw - 48px);padding:10px;border:1px solid var(--line);
+    border-radius:18px;background:#fff;box-shadow:0 20px 50px rgba(29,48,41,.16);
+}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:14px;border-radius:10px;color:var(--ink)}
+.mobile-menu a:hover,.mobile-menu a.active{background:var(--green);color:var(--green-d)}
+
+/* ================= HERO ================= */
+.hero{
+    position:relative;width:min(1240px,calc(100% - 48px));
+    margin:24px auto 40px;padding:54px clamp(28px,5vw,76px);overflow:hidden;
+    border:1px solid rgba(225,233,223,.85);border-radius:34px;
+    background:linear-gradient(115deg,#fff 0%,#fff 48%,#f0f6e9 100%);
+    box-shadow:0 24px 70px rgba(40,70,48,.07);
+}
+.hero::before{
+    content:"";position:absolute;width:470px;height:470px;right:-95px;top:-175px;
+    border:1px solid rgba(72,126,82,.12);border-radius:50%;
+    box-shadow:0 0 0 28px rgba(72,126,82,.035),0 0 0 58px rgba(72,126,82,.025);
+    pointer-events:none;animation:heroOrbit 42s linear infinite;
+}
+@keyframes heroOrbit{to{transform:rotate(360deg)}}
+.hero-content{position:relative;z-index:2}
+.hero-kicker{color:var(--green-d);font-size:clamp(14px,1.8vw,20px);font-weight:600;letter-spacing:3px;margin-bottom:12px}
+.hero h1{font-size:clamp(34px,5.2vw,60px);font-weight:800;line-height:1.12;letter-spacing:-.5px;color:#203b2e}
+.hero-accent{width:86px;height:6px;margin:20px 0 14px;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.hero p{max-width:640px;color:#62776a;font-size:clamp(14px,1.5vw,17px);line-height:1.9}
+
+.hero-info{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-pill{
+    display:inline-flex;align-items:center;gap:9px;padding:9px 18px;
+    border:1px solid #e5eadf;border-radius:999px;background:#fff;
+    color:var(--green-d);font-size:12.5px;font-weight:600;
+}
+.hero-pill svg{width:16px;height:16px;flex-shrink:0;color:var(--orange-d)}
+
+/* ================= CONTENT ================= */
+.content{width:min(1160px,calc(100% - 48px));margin:0 auto 86px}
+
+.section-head{margin-bottom:30px;text-align:center}
+.section-head .mini{color:var(--green-d);font-size:10px;font-weight:700;letter-spacing:2.5px}
+.section-head h2{margin-top:7px;font-size:clamp(27px,3.5vw,36px);color:var(--ink)}
+.section-head p{margin-top:5px;font-size:14px;color:var(--muted)}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;display:flex;flex-direction:column;gap:18px;margin-bottom:64px}
+.timeline::before{
+    content:"";position:absolute;left:107px;top:18px;bottom:18px;width:2px;
+    background:linear-gradient(180deg,var(--orange),var(--yellow),#cfe3bd);
+    border-radius:2px;
+}
+
+.tl-item{position:relative;display:grid;grid-template-columns:96px 1fr;gap:34px;align-items:start}
+
+.tl-time{
+    padding-top:20px;text-align:right;
+    font-weight:700;font-size:14.5px;line-height:1.35;color:var(--green-d);
+}
+.tl-time small{display:block;margin-top:2px;color:#8a9b8c;font-size:11px;font-weight:600;letter-spacing:.5px}
+
+.tl-item::before{
+    content:"";position:absolute;left:99px;top:24px;width:18px;height:18px;
+    border:4px solid #fff;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 0 1px #f1d9bf,0 4px 10px rgba(243,154,85,.35);z-index:2;
+}
+
+.tl-card{
+    padding:22px 26px;border:1px solid #e3eade;border-radius:22px;
+    background:linear-gradient(145deg,#fff,#fbfcf8);
+    box-shadow:0 10px 28px rgba(35,64,46,.035);
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.tl-card:hover{transform:translateY(-4px);border-color:#cbdcbe;box-shadow:0 18px 36px rgba(35,64,46,.09)}
+.tl-card h3{font-size:19px;line-height:1.45;color:var(--ink)}
+.tl-card p{margin-top:6px;color:var(--muted);font-size:13.5px;line-height:1.85}
+
+.tl-tag{
+    display:inline-block;margin-bottom:9px;padding:5px 13px;border-radius:999px;
+    background:var(--orange-s);color:var(--orange-d);
+    font-size:10px;font-weight:700;letter-spacing:1.4px;
+}
+.tl-guest{
+    margin-top:12px;padding:14px 16px;border-radius:14px;
+    background:var(--yellow-s);border:1px solid #f0e2ad;
+    font-size:13.5px;line-height:1.8;color:var(--ink);
+}
+.tl-guest strong{color:var(--orange-d)}
+
+/* ===== ช่วงแข่งขัน (เน้นพิเศษ) ===== */
+.tl-item.main::before{
+    width:24px;height:24px;left:96px;top:20px;
+    background:linear-gradient(135deg,var(--orange),var(--yellow));
+}
+.tl-item.main .tl-card{
+    border-color:#f0e2ad;
+    background:linear-gradient(120deg,#fff9e4,#fffdf6);
+}
+.tl-item.main .tl-time{color:var(--orange-d);font-size:15.5px}
+
+/* ================= COMPETITION GROUPS ================= */
+.c1{--accent:#7fb77e;--accent-s:#e4f0d8;--accent-d:#245c42}
+.c2{--accent:#f39a55;--accent-s:#fff0e2;--accent-d:#a95c26}
+.c3{--accent:#e9c23f;--accent-s:#fff8dc;--accent-d:#7a5d00}
+.c4{--accent:#58b3a3;--accent-s:#e1f3ef;--accent-d:#1f6b5e}
+.c5{--accent:#9a88d6;--accent-s:#efeafb;--accent-d:#54448f}
+.c6{--accent:#e58c8f;--accent-s:#fdeaea;--accent-d:#9c4447}
+
+.groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+
+.group{
+    position:relative;min-width:0;padding:24px 24px 20px 29px;overflow:hidden;
+    border:1px solid #e3eade;border-radius:22px;
+    background:linear-gradient(145deg,#fff,#fbfcf8);
+    box-shadow:0 10px 28px rgba(35,64,46,.035);
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.group::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+.group:hover{transform:translateY(-5px);border-color:#cbdcbe;box-shadow:0 18px 36px rgba(35,64,46,.09)}
+
+.group-tag{
+    display:inline-block;padding:5px 13px;border-radius:999px;
+    background:var(--accent-s);color:var(--accent-d);
+    font-size:10px;font-weight:700;letter-spacing:1.4px;
+}
+.group h3{margin-top:12px;font-size:20px;line-height:1.35;color:var(--ink)}
+.group-divider{height:1px;margin:15px 0 4px;background:linear-gradient(90deg,#dfe8da,transparent 88%)}
+
+.event-row{padding:13px 0;border-bottom:1px dashed #e3eade}
+.event-row:last-child{border-bottom:0;padding-bottom:2px}
+.event-name{font-size:14.5px;font-weight:600;line-height:1.5;color:var(--ink)}
+.event-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.chip{
+    display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;
+    font-size:11.5px;font-weight:600;
+}
+.chip.level{background:#eff5e9;color:var(--green-d)}
+.chip.room{background:var(--accent-s);color:var(--accent-d)}
+.chip svg{width:12px;height:12px;flex-shrink:0}
+
+.note{
+    margin-top:28px;padding:18px 20px;border:1px dashed #c7dcb5;border-radius:17px;
+    background:rgba(255,255,255,.65);color:var(--muted);font-size:12.5px;line-height:1.9;text-align:center;
+}
+
+footer{
+    padding:27px 20px;border-top:1px solid var(--line);color:#7b8875;
+    font-size:11px;letter-spacing:1px;text-align:center;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+    .groups{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+    .navbar{width:calc(100% - 30px);height:68px;padding:0 14px;margin-top:10px}
+    .desktop-menu{display:none}
+    .menu-button{display:flex}
+    .logo-box{width:42px;height:42px}
+    .logo-text strong{font-size:12px}
+    .logo-text span{font-size:8px}
+}
+
+@media(max-width:600px){
+    .hero,.content{width:calc(100% - 30px)}
+    .hero{margin-top:20px;margin-bottom:30px;padding:34px 23px;border-radius:25px}
+    .hero h1{font-size:34px}
+    .hero::before{width:300px;height:300px;right:-150px}
+
+    .timeline{gap:14px;margin-bottom:48px}
+    .timeline::before{left:9px;top:12px;bottom:12px}
+    .tl-item{grid-template-columns:1fr;gap:6px;padding-left:34px}
+    .tl-item::before{left:0;top:3px;width:20px;height:20px}
+    .tl-item.main::before{left:-2px;top:1px;width:24px;height:24px}
+    .tl-time{padding-top:0;text-align:left;font-size:14px}
+    .tl-time small{display:inline;margin-left:8px}
+    .tl-card{padding:18px 18px;border-radius:19px}
+    .tl-card h3{font-size:17px}
+
+    .group{padding:22px 20px 18px 25px;border-radius:20px}
+    .content{margin-bottom:56px}
+}
+
+@media(prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+
+/* ============================================================
+   พื้นหลังเคลื่อนไหวเบาๆ เหมือนหน้าหลัก
+   ============================================================ */
+body::before,body::after{
+    content:"";position:fixed;z-index:-1;pointer-events:none;border-radius:50%;
+    filter:blur(2px);opacity:.5;will-change:transform;
+}
+body::before{
+    width:clamp(150px,24vw,310px);height:clamp(150px,24vw,310px);top:12vh;left:-9vw;
+    background:radial-gradient(circle,rgba(247,217,107,.20) 0%,rgba(247,217,107,.07) 48%,transparent 72%);
+    animation:ambientDriftA 24s ease-in-out infinite alternate;
+}
+body::after{
+    width:clamp(190px,28vw,360px);height:clamp(190px,28vw,360px);right:-10vw;bottom:8vh;
+    background:radial-gradient(circle,rgba(243,154,85,.14) 0%,rgba(243,154,85,.05) 48%,transparent 72%);
+    animation:ambientDriftB 29s ease-in-out infinite alternate;
+}
+@keyframes ambientDriftA{from{transform:translate3d(0,0,0) scale(.94)}to{transform:translate3d(7vw,8vh,0) scale(1.08)}}
+@keyframes ambientDriftB{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-6vw,-7vh,0) scale(.92)}}
+
+.snowfall{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;contain:strict}
+.snowfall i{position:absolute;top:-12vh;left:var(--x);width:var(--size);height:var(--size);display:block;border-radius:50%;opacity:var(--alpha);background:var(--particle);box-shadow:0 0 10px var(--glow);filter:blur(var(--blur));transform:translate3d(0,-12vh,0);animation:snowFall var(--duration) linear var(--delay) infinite;will-change:transform}
+.snowfall i:nth-child(4n+1){--particle:rgba(255,255,255,.96);--glow:rgba(255,255,255,.42)}
+.snowfall i:nth-child(4n+2){--particle:rgba(255,224,122,.78);--glow:rgba(255,224,122,.22)}
+.snowfall i:nth-child(4n+3){--particle:rgba(220,239,201,.95);--glow:rgba(220,239,201,.35)}
+.snowfall i:nth-child(4n){--particle:rgba(255,178,105,.58);--glow:rgba(255,178,105,.20)}
+.snowfall i:nth-child(1){--x:4%;--size:5px;--alpha:0.62;--duration:18s;--delay:-13s;--blur:0.2px}
+.snowfall i:nth-child(2){--x:9%;--size:8px;--alpha:0.45;--duration:24s;--delay:-4s;--blur:0.5px}
+.snowfall i:nth-child(3){--x:14%;--size:4px;--alpha:0.7;--duration:21s;--delay:-17s;--blur:0px}
+.snowfall i:nth-child(4){--x:19%;--size:6px;--alpha:0.5;--duration:27s;--delay:-8s;--blur:0.4px}
+.snowfall i:nth-child(5){--x:24%;--size:9px;--alpha:0.35;--duration:23s;--delay:-19s;--blur:1px}
+.snowfall i:nth-child(6){--x:29%;--size:4px;--alpha:0.66;--duration:19s;--delay:-6s;--blur:0px}
+.snowfall i:nth-child(7){--x:34%;--size:7px;--alpha:0.48;--duration:26s;--delay:-15s;--blur:0.6px}
+.snowfall i:nth-child(8){--x:39%;--size:5px;--alpha:0.58;--duration:22s;--delay:-2s;--blur:0.2px}
+.snowfall i:nth-child(9){--x:44%;--size:8px;--alpha:0.38;--duration:28s;--delay:-21s;--blur:0.8px}
+.snowfall i:nth-child(10){--x:49%;--size:4px;--alpha:0.68;--duration:20s;--delay:-10s;--blur:0px}
+.snowfall i:nth-child(11){--x:54%;--size:6px;--alpha:0.52;--duration:25s;--delay:-18s;--blur:0.3px}
+.snowfall i:nth-child(12){--x:59%;--size:9px;--alpha:0.34;--duration:29s;--delay:-7s;--blur:1px}
+.snowfall i:nth-child(13){--x:64%;--size:5px;--alpha:0.6;--duration:19s;--delay:-14s;--blur:0.2px}
+.snowfall i:nth-child(14){--x:69%;--size:7px;--alpha:0.46;--duration:24s;--delay:-3s;--blur:0.6px}
+.snowfall i:nth-child(15){--x:74%;--size:4px;--alpha:0.7;--duration:21s;--delay:-20s;--blur:0px}
+.snowfall i:nth-child(16){--x:79%;--size:8px;--alpha:0.4;--duration:27s;--delay:-11s;--blur:0.8px}
+.snowfall i:nth-child(17){--x:84%;--size:5px;--alpha:0.58;--duration:23s;--delay:-5s;--blur:0.2px}
+.snowfall i:nth-child(18){--x:89%;--size:9px;--alpha:0.34;--duration:30s;--delay:-16s;--blur:1px}
+.snowfall i:nth-child(19){--x:94%;--size:4px;--alpha:0.66;--duration:18s;--delay:-9s;--blur:0px}
+.snowfall i:nth-child(20){--x:12%;--size:3px;--alpha:0.52;--duration:32s;--delay:-24s;--blur:0px}
+.snowfall i:nth-child(21){--x:37%;--size:3px;--alpha:0.58;--duration:31s;--delay:-12s;--blur:0px}
+.snowfall i:nth-child(22){--x:62%;--size:3px;--alpha:0.54;--duration:34s;--delay:-27s;--blur:0px}
+.snowfall i:nth-child(23){--x:81%;--size:3px;--alpha:0.6;--duration:33s;--delay:-22s;--blur:0px}
+.snowfall i:nth-child(24){--x:97%;--size:6px;--alpha:0.42;--duration:26s;--delay:-6s;--blur:0.5px}
+@keyframes snowFall{0%{transform:translate3d(0,-14vh,0) rotate(0deg)}25%{transform:translate3d(18px,25vh,0) rotate(90deg)}50%{transform:translate3d(-12px,52vh,0) rotate(180deg)}75%{transform:translate3d(20px,79vh,0) rotate(270deg)}100%{transform:translate3d(-8px,114vh,0) rotate(360deg)}}
+@media(max-width:600px){.snowfall i:nth-child(n+17){display:none}.snowfall i{box-shadow:0 0 7px var(--glow)}}
+@media(prefers-reduced-motion:reduce){.snowfall{display:none!important}body::before,body::after{animation:none!important}}
+</style>
+</head>
+
+<body>
+
+<div class="snowfall" aria-hidden="true">
+  <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+</div>
+
+<!-- HEADER -->
+<header class="navbar">
+
+    <a class="logo" href="index.html" aria-label="กลับหน้าหลัก">
+        <div class="logo-box">
+            <img src="logo.png" alt="HORPRA Logo">
+        </div>
+        <div class="logo-text">
+            <strong>OPENHOUSE HORPRA</strong>
+            <span>IGNITE THE FUTURE</span>
+        </div>
+    </a>
+
+    <nav class="desktop-menu" aria-label="เมนูหลัก">
+        <a href="index.html">หน้าแรก</a>
+        <a href="competition.html">รายการแข่งขัน</a>
+        <a href="participants.html">ผู้เข้าแข่งขัน</a>
+        <a href="Schedule.html" class="active">กำหนดการ</a>
+    </nav>
+
+    <button class="menu-button" id="menuButton" aria-label="เปิดเมนู" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="เมนูมือถือ">
+    <a href="index.html">หน้าแรก</a>
+    <a href="competition.html">รายการแข่งขัน</a>
+    <a href="participants.html">ผู้เข้าแข่งขัน</a>
+    <a href="Schedule.html" class="active">กำหนดการ</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-kicker">HORPRA OPEN HOUSE · SCHEDULE</div>
+
+        <h1>กำหนดการกิจกรรม</h1>
+
+        <div class="hero-accent"></div>
+
+        <p>
+            Open House Horpra · IGNITE THE FUTURE จุดประกายศักยภาพสู่อนาคต
+            ประจำปีการศึกษา 2569 ดูลำดับกิจกรรมและห้องแข่งขันของแต่ละกลุ่มสาระได้ที่นี่
+        </p>
+
+        <div class="hero-info">
+            <span class="hero-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                วันศุกร์ที่ 20 พฤศจิกายน 2569
+            </span>
+            <span class="hero-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                หอประชุมพันแจ่ม โรงเรียนหอพระ
+            </span>
+        </div>
+    </div>
+</section>
+
+<main class="content">
+
+    <!-- ภาคเช้า / ลำดับพิธี -->
+    <div class="section-head">
+        <div class="mini">PROGRAM TIMELINE</div>
+        <h2>ลำดับกิจกรรมภาคเช้า</h2>
+        <p>ตั้งแต่ลงทะเบียนจนถึงเริ่มการแข่งขัน</p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="tl-item">
+            <div class="tl-time">08.00 – 08.30 น.</div>
+            <div class="tl-card">
+                <span class="tl-tag">REGISTRATION</span>
+                <h3>ลงทะเบียนผู้เข้าร่วมงาน / นักเรียน / แขกผู้มีเกียรติ</h3>
+            </div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-time">08.30 – 09.00 น.</div>
+            <div class="tl-card">
+                <span class="tl-tag">WELCOME SHOW</span>
+                <h3>การแสดงต้อนรับจากนักเรียน</h3>
+                <p>ชุดการแสดงเปิดงาน</p>
+            </div>
+        </div>
+
+        <div class="tl-item">
+            <div class="tl-time">09.00 – 10.00 น.</div>
+            <div class="tl-card">
+                <span class="tl-tag">OPENING CEREMONY</span>
+                <h3>พิธีเปิดงาน</h3>
+                <p>ประธานกล่าวรายงาน</p>
+                <div class="tl-guest">
+                    ประธานในพิธีกล่าวเปิดงาน โดย <strong>ดร.ชัยนนท์ นิลพัฒน์</strong><br>
+                    ผู้อำนวยการสำนักงานเขตพื้นที่การศึกษามัธยมศึกษาเชียงใหม่
+                </div>
+            </div>
+        </div>
+
+        <div class="tl-item main">
+            <div class="tl-time">10.00 – 12.00 น.</div>
+            <div class="tl-card">
+                <span class="tl-tag">COMPETITION</span>
+                <h3>เริ่มการแข่งขันตามกลุ่มสาระการเรียนรู้ทั้ง 8 กลุ่มสาระฯ</h3>
+                <p>ดูรายการและห้องแข่งขันของแต่ละกลุ่มสาระด้านล่าง</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- รายการแข่งขันแยกตามกลุ่มสาระ -->
+    <div class="section-head">
+        <div class="mini">COMPETITION ROOMS</div>
+        <h2>ห้องแข่งขันแต่ละกลุ่มสาระ</h2>
+        <p>เวลา 10.00 – 12.00 น.</p>
+    </div>
+
+    <section class="groups">
+
+        <!-- คณิตศาสตร์ -->
+        <article class="group c2">
+            <span class="group-tag">MATHEMATICS</span>
+            <h3>กลุ่มสาระการเรียนรู้คณิตศาสตร์</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">การแข่งขันคณิตคิดเร็ว</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 411</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- ภาษาต่างประเทศ -->
+        <article class="group c3">
+            <span class="group-tag">FOREIGN LANGUAGES</span>
+            <h3>กลุ่มสาระการเรียนรู้ภาษาต่างประเทศ</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">กิจกรรม Spelling Bee</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 425</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">การคัดลายมือภาษาญี่ปุ่น</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 431</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">การคัดลายมือภาษาจีน</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 424</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- ภาษาไทย -->
+        <article class="group c4">
+            <span class="group-tag">THAI LANGUAGE</span>
+            <h3>กลุ่มสาระการเรียนรู้ภาษาไทย</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">การแข่งขันเขียนตามคำบอก</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้องสมุดโรงเรียน</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- สังคมศึกษา -->
+        <article class="group c6">
+            <span class="group-tag">SOCIAL STUDIES</span>
+            <h3>กลุ่มสาระสังคมศึกษา ศาสนาและวัฒนธรรม</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">ตอบคำถามแฟนพันธุ์แท้สังคมฯ</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 1 – 6</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 423</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">แข่งขันตอบปัญหากฎหมาย</div>
+                <div class="event-meta">
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>ห้อง 422</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- สุขศึกษาและพลศึกษา -->
+        <article class="group c5">
+            <span class="group-tag">HEALTH &amp; PHYSICAL EDUCATION</span>
+            <h3>กลุ่มสาระการเรียนรู้สุขศึกษาและพลศึกษา</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">ฟุตบอลพลาสติกโกลหนู</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>สนามฟุตซอลโรงเรียนหอพระ</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- ศิลปศึกษา -->
+        <article class="group c1">
+            <span class="group-tag">ART EDUCATION</span>
+            <h3>กลุ่มสาระการเรียนรู้ศิลปศึกษา</h3>
+            <div class="group-divider"></div>
+
+            <div class="event-row">
+                <div class="event-name">การประกวดขับร้องเพลงพระราชนิพนธ์</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>หอประชุมพันแจ่ม</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">ประกวดฟ้อนเมือง</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 1 – 6</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>หอประชุมพันแจ่ม</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">ประกวดฟ้อนเล็บ</div>
+                <div class="event-meta">
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>หอประชุมพันแจ่ม</span>
+                </div>
+            </div>
+            <div class="event-row">
+                <div class="event-name">การแข่งขันวาดภาพพระบายสีโปสเตอร์</div>
+                <div class="event-meta">
+                    <span class="chip level">ประถมศึกษาปีที่ 4 – 6</span>
+                    <span class="chip level">มัธยมศึกษาปีที่ 1 – 3</span>
+                    <span class="chip room"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>หอประชุมพันแจ่ม</span>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <div class="note">
+        หมายเหตุ: กำหนดการอาจมีการเปลี่ยนแปลงตามความเหมาะสม โปรดติดตามประกาศจากผู้จัดงาน
+    </div>
+
+</main>
+
+<footer>
+    OPENHOUSE HORPRA · ACADEMIC COMPETITIONS
+</footer>
+
+<script>
+const menuButton = document.getElementById('menuButton');
+const mobileMenu = document.getElementById('mobileMenu');
+
+menuButton.addEventListener('click', function(){
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuButton.classList.toggle('active', isOpen);
+    menuButton.setAttribute('aria-expanded', isOpen);
+});
+
+document.addEventListener('click', function(event){
+    if(!menuButton.contains(event.target) && !mobileMenu.contains(event.target)){
+        mobileMenu.classList.remove('open');
+        menuButton.classList.remove('active');
+        menuButton.setAttribute('aria-expanded', 'false');
+    }
+});
+</script>
+
+</body>
+</html>
